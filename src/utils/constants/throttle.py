@@ -1,0 +1,2 @@
+THROTTLE_LIMIT: int = 5
+THROTTLE_WINDOW: int = 3

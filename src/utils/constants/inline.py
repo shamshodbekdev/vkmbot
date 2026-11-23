@@ -1,0 +1,1 @@
+INLINE_SEARCH_LIMIT: int = 50
