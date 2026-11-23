@@ -1,0 +1,39 @@
+[project]
+name = "aiogram-template"
+version = "0.1.0"
+description = "VKM Bot - Telegram music and media downloader (YouTube, Instagram, TikTok, Shazam)"
+authors = [{ name = "Shamshodbek", email = "shamshodbekdev@gmail.com" }]
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "aiogram[i18n] (>=3.26.0,<4.0.0)",
+    "pydantic-settings (>=2.13.1,<3.0.0)",
+    "tortoise-orm[asyncpg] (>=1.1.5,<2.0.0)",
+    "redis (>=7.2.1,<8.0.0)",
+    "matplotlib (>=3.10.8,<4.0.0)",
+    "humanize (>=4.15.0,<5.0.0)",
+    "aiocache (>=0.12.3,<0.13.0)",
+    "apscheduler (>=3.10,<4.0)",
+    "aiofiles (>=25.1.0,<26.0.0)",
+    "yt-dlp (>=2026.10.26,<2027.0.0)",
+    "ytmusicapi (>=1.12.4,<2.0.0)",
+    "shazamio (>=0.9.0,<0.10.0)",
+    "faster-whisper (>=1.2.1,<2.0.0)",
+    "av (>=14,<16)",
+]
+
+[tool.poetry]
+# This is an application, not a library: install dependencies only.
+# Without this, `poetry install` fails because there is no "aiogram_template" package.
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.2.0,<10.0.0)"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
