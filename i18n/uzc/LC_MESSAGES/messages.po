@@ -1,0 +1,1140 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-04 00:00+0000\n"
+"PO-Revision-Date: 2026-03-04 00:00+0000\n"
+"Last-Translator: Shamshodbek <shamshodbekdev@gmail.com>\n"
+"Language-Team: Uzbek (Cyrillic)\n"
+"Language: uz_Cyrl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/handlers/admin/command/manage.py:14
+msgid "Hi admin!"
+msgstr "Салом, админ!"
+
+#: src/handlers/admin/command/manage_admin.py:14
+#: src/handlers/admin/command/manage_admin.py:17
+#: src/handlers/admin/command/manage_admin.py:41
+#: src/handlers/admin/command/manage_admin.py:101
+#: src/keyboard/reply/manage.py:24
+msgid "Admins"
+msgstr "Админлар"
+
+#: src/handlers/admin/command/manage_admin.py:25
+#: src/handlers/admin/command/manage_user.py:24
+msgid "Main menu"
+msgstr "Асосий меню"
+
+#: src/handlers/admin/command/manage_admin.py:30
+#: src/keyboard/reply/manage_admin.py:19
+msgid "Add admin"
+msgstr "Админ қўшиш"
+
+#: src/handlers/admin/command/manage_admin.py:33
+msgid "Please, send a chat id of the user you want to make an admin."
+msgstr "Илтимос, админ қилмоқчи бўлган фойдаланувчининг chat ID рақамини юборинг."
+
+#: src/handlers/admin/command/manage_admin.py:51
+#: src/handlers/admin/command/manage_user.py:34
+msgid "Chat id must be a number. Please, try again."
+msgstr "Chat ID рақам бўлиши керак. Илтимос, қайта уриниб кўринг."
+
+#: src/handlers/admin/command/manage_admin.py:59
+#: src/handlers/admin/command/manage_user.py:42
+#: src/handlers/admin/command/manage_user.py:74
+msgid "User with this chat id not found. Please, try again."
+msgstr "Бундай chat ID га эга фойдаланувчи топилмади. Илтимос, қайта уриниб кўринг."
+
+#: src/handlers/admin/command/manage_admin.py:66
+msgid "User is already an admin."
+msgstr "Фойдаланувчи аллақачон админ."
+
+#: src/handlers/admin/command/manage_admin.py:76
+msgid "User has been made an admin successfully."
+msgstr "Фойдаланувчи муваффақиятли админ қилинди."
+
+#: src/handlers/admin/command/manage_admin.py:106
+#: src/keyboard/reply/delete_admin.py:11
+msgid "Delete admin"
+msgstr "Админни ўчириш"
+
+#: src/handlers/admin/command/manage_admin.py:117
+msgid "Admin has been removed successfully."
+msgstr "Админ муваффақиятли олиб ташланди."
+
+#: src/handlers/admin/command/manage_user.py:63
+#: src/keyboard/reply/manage_user.py:11
+msgid "Block user"
+msgstr "Фойдаланувчини блоклаш"
+
+#: src/handlers/admin/command/manage_user.py:63
+#: src/keyboard/reply/manage_user.py:11
+msgid "Unblock user"
+msgstr "Фойдаланувчини блокдан чиқариш"
+
+#: src/handlers/admin/command/manage_user.py:84
+msgid "User has been blocked successfully."
+msgstr "Фойдаланувчи муваффақиятли блокланди."
+
+#: src/handlers/admin/command/manage_user.py:84
+msgid "User has been unblocked successfully."
+msgstr "Фойдаланувчи муваффақиятли блокдан чиқарилди."
+
+#: src/middlewares/blocked.py:18
+msgid "You are blocked from using this bot. Please contact the administrator for more information."
+msgstr "⛔ Сиз бу ботдан фойдаланишдан блоклангансиз. Қўшимча маълумот учун администратор билан боғланинг."
+
+#: src/handlers/admin/callback/manage_user.py:14
+msgid "User not found."
+msgstr "Фойдаланувчи топилмади."
+
+#: src/handlers/admin/command/statistics.py:22
+msgid ""
+"<b>Bot statistics</b>\n"
+"\n"
+"Total audience: <b>%(total_word)s</b>\n"
+"\n"
+"<b>Users: %(private)s (+%(daily_new)s) (-%(kicked)s)</b>\n"
+"%(uz)s UZ  |  %(en)s EN  |  %(ru)s RU\n"
+"Premium: %(premium)s\n"
+"Active: %(member)s\n"
+"Kicked: %(kicked)s\n"
+"\n"
+"<b>Groups: %(groups)s (+%(daily_active)s) (-%(left)s)</b>\n"
+"Active: %(active_groups)s\n"
+"Left: %(left)s\n"
+"\n"
+"Updated at: <i>%(updated_at)s</i>"
+msgstr ""
+"<b>Бот статистикаси</b>\n"
+"\n"
+"Умумий аудитория: <b>%(total_word)s</b>\n"
+"\n"
+"<b>Фойдаланувчилар: %(private)s (+%(daily_new)s) (-%(kicked)s)</b>\n"
+"%(uz)s UZ  |  %(en)s EN  |  %(ru)s RU\n"
+"Premium: %(premium)s\n"
+"Фаол: %(member)s\n"
+"Чиқарилган: %(kicked)s\n"
+"\n"
+"<b>Гуруҳлар: %(groups)s (+%(daily_active)s) (-%(left)s)</b>\n"
+"Фаол: %(active_groups)s\n"
+"Чиқиб кетган: %(left)s\n"
+"\n"
+"Янгиланган вақт: <i>%(updated_at)s</i>"
+
+#: src/keyboard/reply/manage.py:11
+msgid "Statistics"
+msgstr "Статистика"
+
+#: src/handlers/admin/command/analytics.py:22
+msgid ""
+"<b>Analytics</b>\n"
+"\n"
+"<b>Daily: %(d_current)s  (%(d_change)s,  %(d_rate)s%%)</b>\n"
+"UZ %(d_uz)s  |  EN %(d_en)s  |  RU %(d_ru)s\n"
+"\n"
+"<b>Weekly: %(w_current)s  (%(w_change)s,  %(w_rate)s%%)</b>\n"
+"UZ %(w_uz)s  |  EN %(w_en)s  |  RU %(w_ru)s\n"
+"\n"
+"<b>Monthly: %(m_current)s  (%(m_change)s,  %(m_rate)s%%)</b>\n"
+"UZ %(m_uz)s  |  EN %(m_en)s  |  RU %(m_ru)s\n"
+"\n"
+"<b>Health</b>\n"
+"Database: %(database)s  |  Scheduler: %(queue)s  |  Cache: %(cache)s  |  Bot: %(bot)s\n"
+"\n"
+"Updated at: <i>%(updated_at)s</i>"
+msgstr ""
+"<b>Аналитика</b>\n"
+"\n"
+"<b>Кунлик: %(d_current)s  (%(d_change)s,  %(d_rate)s%%)</b>\n"
+"UZ %(d_uz)s  |  EN %(d_en)s  |  RU %(d_ru)s\n"
+"\n"
+"<b>Ҳафталик: %(w_current)s  (%(w_change)s,  %(w_rate)s%%)</b>\n"
+"UZ %(w_uz)s  |  EN %(w_en)s  |  RU %(w_ru)s\n"
+"\n"
+"<b>Ойлик: %(m_current)s  (%(m_change)s,  %(m_rate)s%%)</b>\n"
+"UZ %(m_uz)s  |  EN %(m_en)s  |  RU %(m_ru)s\n"
+"\n"
+"<b>Ҳолат</b>\n"
+"Маълумотлар базаси: %(database)s  |  Режалаштирувчи: %(queue)s  |  Кэш: %(cache)s  |  Бот: %(bot)s\n"
+"\n"
+"Янгиланган вақт: <i>%(updated_at)s</i>"
+
+#: src/keyboard/reply/manage.py:14
+msgid "Analytics"
+msgstr "Аналитика"
+
+#: src/keyboard/reply/manage.py:19
+msgid "Broadcast message"
+msgstr "Хабар юбориш"
+
+#: src/handlers/admin/command/manage_user.py:13
+#: src/keyboard/reply/manage.py:27
+msgid "Users"
+msgstr "Фойдаланувчилар"
+
+#: src/keyboard/reply/manage.py:32
+msgid "Mandatory subscription"
+msgstr "Мажбурий обуна"
+
+#: src/keyboard/reply/back.py:11
+#: src/keyboard/reply/delete_admin.py:16
+#: src/keyboard/reply/manage_admin.py:24
+#: src/keyboard/reply/manage_user.py:16
+msgid "Back"
+msgstr "Орқага"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast mode activated. Use the Back button to cancel at any time."
+msgstr "Хабар юбориш режими фаоллаштирилди. Исталган вақтда бекор қилиш учун Орқага тугмасидан фойдаланинг."
+
+#: src/handlers/admin/message/broadcast.py
+msgid ""
+"<b>Step 1 of 5 — Target languages</b>\n"
+"\n"
+"Select the languages of the users you want to reach.\n"
+"Only users whose interface language matches one of the selected options will "
+"receive the broadcast.\n"
+"\n"
+"You can select multiple languages. Tap a language to toggle it, then press "
+"<b>Continue</b>."
+msgstr ""
+"<b>5 босқичдан 1-босқич — Мақсадли тиллар</b>\n"
+"\n"
+"Етиб бормоқчи бўлган фойдаланувчилар тилларини танланг.\n"
+"Фақат интерфейс тили танланган вариантлардан бирига мос келадиган "
+"фойдаланувчилар хабарни олади.\n"
+"\n"
+"Сиз бир нечта тилни танлашингиз мумкин. Тилни ёқиш ёки ўчириш учун "
+"устига босинг, сўнг <b>Давом этиш</b> тугмасини босинг."
+
+#: src/handlers/admin/command/broadcast.py:68
+#: src/handlers/admin/command/broadcast.py:106
+msgid "Please select at least one."
+msgstr "Илтимос, камида биттасини танланг."
+
+#: src/handlers/admin/message/broadcast.py
+msgid ""
+"<b>Step 3 of 5 — Target chat types</b>\n"
+"\n"
+"Select which types of chats should receive the broadcast.\n"
+"\n"
+"• <b>Private</b> — direct messages with individual users\n"
+"• <b>Group</b> — regular group chats\n"
+"• <b>Supergroup</b> — large supergroup chats\n"
+"\n"
+"Select one or more types, then press <b>Continue</b>."
+msgstr ""
+"<b>5 босқичдан 3-босқич — Мақсадли chat турлари</b>\n"
+"\n"
+"Қайси турдаги chatлар хабарни қабул қилишини танланг.\n"
+"\n"
+"• <b>Шахсий</b> — алоҳида фойдаланувчилар билан тўғридан тўғри хабарлар\n"
+"• <b>Гуруҳ</b> — оддий гуруҳ chatлари\n"
+"• <b>Супергруппа</b> — катта супергруппа chatлари\n"
+"\n"
+"Бир ёки бир нечта турини танланг, сўнг <b>Давом этиш</b> тугмасини босинг."
+
+#: src/handlers/admin/message/broadcast.py
+msgid ""
+"<b>Step 4 of 5 — Schedule</b>\n"
+"\n"
+"Choose when the broadcast should begin.\n"
+"\n"
+"You can start immediately or delay the send by a few hours.\n"
+"The bot will wait the selected amount of time before sending the first "
+"message.\n"
+"\n"
+"Select a start time below."
+msgstr ""
+"<b>5 босқичдан 4-босқич — Режалаштириш</b>\n"
+"\n"
+"Хабар юбориш қачон бошланишини танланг.\n"
+"\n"
+"Сиз уни дарҳол бошлашингиз ёки юборишни бир неча соатга кечиктиришингиз мумкин.\n"
+"Биринчи хабарни юборишдан олдин бот танланган вақт миқдорини кутади.\n"
+"\n"
+"Қуйидан бошланиш вақтини танланг."
+
+#: src/handlers/admin/message/broadcast.py
+msgid ""
+"<b>Step 5 of 5 — Broadcast message</b>\n"
+"\n"
+"Send the message you want to broadcast to the selected audience.\n"
+"\n"
+"Supported types: text, photo, video, audio, document, sticker, voice, "
+"animation, and more.\n"
+"The message will be delivered exactly as you send it.\n"
+"\n"
+"Send your message now."
+msgstr ""
+"<b>5 босқичдан 5-босқич — Хабар матни</b>\n"
+"\n"
+"Танланган аудиторияга юбормоқчи бўлган хабарингизни юборинг.\n"
+"\n"
+"Қўллаб-қувватланадиган турлар: матн, расм, видео, аудио, ҳужжат, стикер, овозли хабар, "
+"анимация ва бошқалар.\n"
+"Хабар айнан сиз юборган кўринишда етказилади.\n"
+"\n"
+"Хабарингизни ҳозир юборинг."
+
+#: src/handlers/admin/command/broadcast.py
+msgid ""
+"<b>Send mode</b>\n"
+"\n"
+"Choose how the message should be delivered to recipients.\n"
+"\n"
+"• <b>Copy</b> — sends the message as a new message. No \"forwarded "
+"from\" label is shown.\n"
+"• <b>Forward</b> — forwards the original message. Recipients will "
+"see the source sender.\n"
+"\n"
+"Select the desired mode."
+msgstr ""
+"<b>Юбориш режими</b>\n"
+"\n"
+"Хабар қабул қилувчиларга қандай етказилишини танланг.\n"
+"\n"
+"• <b>Нусха</b> — хабарни янги хабар сифатида юборади. \"forwarded "
+"from\" белгиси кўрсатилмайди.\n"
+"• <b>Forward</b> — асл хабарни forward қилади. Қабул қилувчилар "
+"манба юборувчини кўради.\n"
+"\n"
+"Керакли режимни танланг."
+
+#: src/handlers/admin/command/broadcast.py
+msgid ""
+"<b>Broadcast</b>\n"
+"\n"
+"Audience  —  <b>%(audience)s users</b>\n"
+"Mode      —  <b>%(mode)s</b>\n"
+"Delay     —  <b>%(delay)s</b>\n"
+"\n"
+"Confirm to start broadcasting."
+msgstr ""
+"<b>Хабар юбориш</b>\n"
+"\n"
+"Аудитория  —  <b>%(audience)s фойдаланувчи</b>\n"
+"Режим      —  <b>%(mode)s</b>\n"
+"Кечикиш    —  <b>%(delay)s</b>\n"
+"\n"
+"Хабар юборишни бошлашни тасдиқланг."
+
+#: src/handlers/admin/command/broadcast.py
+msgid ""
+"<b>Broadcast is running</b>\n"
+"\n"
+"Audience  —  <b>%(audience)s users</b>\n"
+"Mode      —  <b>%(mode)s</b>\n"
+"Delay     —  <b>%(delay)s</b>\n"
+"Datetime  —  <b>%(datetime)s</b>"
+msgstr ""
+"<b>Хабар юбориш жараёни ишламоқда</b>\n"
+"\n"
+"Аудитория  —  <b>%(audience)s фойдаланувчи</b>\n"
+"Режим      —  <b>%(mode)s</b>\n"
+"Кечикиш    —  <b>%(delay)s</b>\n"
+"Сана-вақт  —  <b>%(datetime)s</b>"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast cancelled. Returning to main menu."
+msgstr "Хабар юбориш бекор қилинди. Асосий менюга қайтилмоқда."
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast cancelled."
+msgstr "Хабар юбориш бекор қилинди."
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast not found."
+msgstr "Хабар юбориш топилмади."
+
+#: src/keyboard/inline/broadcast_progress.py
+msgid "Pause"
+msgstr "Пауза"
+
+#: src/keyboard/inline/broadcast_progress.py
+msgid "Resume"
+msgstr "Давом эттириш"
+
+#: src/keyboard/inline/broadcast_progress.py
+msgid "Stop"
+msgstr "Тўхтатиш"
+
+#: src/keyboard/inline/broadcast_progress.py
+msgid "View progress"
+msgstr "Жараённи кўриш"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "In progress"
+msgstr "Жараёнда"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Paused"
+msgstr "Пауза қилинган"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Stopped"
+msgstr "Тўхтатилган"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Completed"
+msgstr "Якунланган"
+
+#: src/handlers/admin/command/broadcast.py
+msgid ""
+"Status:    %(status)s  —  %(percent)s%%\n"
+"\n"
+"Sent:      %(total)s / %(audience)s\n"
+"Success:   %(success)s\n"
+"Failed:    %(failed)s\n"
+"Blocked:   %(blocked)s\n"
+"\n"
+"Started:   %(started_at)s"
+msgstr ""
+"Ҳолат:      %(status)s  —  %(percent)s%%\n"
+"\n"
+"Юборилди:   %(total)s / %(audience)s\n"
+"Муваффақиятли: %(success)s\n"
+"Муваффақиятсиз: %(failed)s\n"
+"Блокланган: %(blocked)s\n"
+"\n"
+"Бошланган:  %(started_at)s"
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast paused."
+msgstr "Хабар юбориш пауза қилинди."
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast resumed."
+msgstr "Хабар юбориш давом эттирилди."
+
+#: src/handlers/admin/command/broadcast.py
+msgid "Broadcast stopped."
+msgstr "Хабар юбориш тўхтатилди."
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Add subscription"
+msgstr "Обуна қўшиш"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Activate"
+msgstr "Фаоллаштириш"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Deactivate"
+msgstr "Фаолсизлантириш"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Delete subscription"
+msgstr "Обунани ўчириш"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Create here"
+msgstr "Шу ерда яратиш"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Use max: %(count)s"
+msgstr "Максималдан фойдаланиш: %(count)s"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Use the Back button to cancel at any time."
+msgstr "Исталган вақтда бекор қилиш учун Орқага тугмасидан фойдаланинг."
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid ""
+"<b>Step 1 — Channel or group</b>\n"
+"\n"
+"Send the channel or group <b>ID</b>, <b>@username</b>,\n"
+"or <b>forward any message</b> from it.\n"
+"\n"
+"The bot must be an <b>administrator</b> in the channel or group."
+msgstr ""
+"<b>1-босқич — Канал ёки гуруҳ</b>\n"
+"\n"
+"Канал ёки гуруҳнинг <b>ID</b> сини, <b>@username</b> сини,\n"
+"ёки ундан <b>исталган хабарни forward қилинг</b>.\n"
+"\n"
+"Бот канал ёки гуруҳда <b>администратор</b> бўлиши керак."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Channel or group not found. Please try again."
+msgstr "Канал ёки гуруҳ топилмади. Илтимос, қайта уриниб кўринг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Please send a chat ID, @username, or forward a message from the channel or group."
+msgstr "Илтимос, chat ID, @username юборинг ёки канал/гуруҳдан хабарни forward қилинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Bot is not an administrator in <b>%(title)s</b>. Please add the bot as admin and try again."
+msgstr "Бот <b>%(title)s</b> да администратор эмас. Илтимос, ботни админ қилиб қўшинг ва қайта уриниб кўринг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Failed to verify bot permissions. Make sure the bot is an administrator."
+msgstr "Бот рухсатларини текшириб бўлмади. Бот администратор эканлигига ишонч ҳосил қилинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid ""
+"<b>Step 2 — Invite link</b>\n"
+"\n"
+"Send an invite link for <b>%(title)s</b>,\n"
+"or tap <b>Create here</b> to generate one automatically."
+msgstr ""
+"<b>2-босқич — Таклиф ҳаволаси</b>\n"
+"\n"
+"<b>%(title)s</b> учун таклиф ҳаволасини юборинг,\n"
+"ёки автоматик яратиш учун <b>Шу ерда яратиш</b> тугмасини босинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Failed to create invite link. Check bot permissions."
+msgstr "Таклиф ҳаволасини яратиб бўлмади. Бот рухсатларини текширинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Please send a valid invite link starting with https://."
+msgstr "Илтимос, https:// билан бошланадиган яроқли таклиф ҳаволасини юборинг."
+
+#: src/handlers/admin/message/subscription_manager.py
+msgid ""
+"<b>Step 3 — Maximum audience</b>\n"
+"\n"
+"How many users can join via this link?\n"
+"Send a number or tap <b>Use max: %(count)s</b> to use total registered users."
+msgstr ""
+"<b>3-босқич — Максимал аудитория</b>\n"
+"\n"
+"Бу ҳавола орқали нечта фойдаланувчи қўшилиши мумкин?\n"
+"Рақам юборинг ёки жами рўйхатдан ўтган фойдаланувчилар сонидан фойдаланиш учун <b>Максималдан фойдаланиш: %(count)s</b> тугмасини босинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid "Please send a valid positive number."
+msgstr "Илтимос, яроқли мусбат сон юборинг."
+
+#: src/handlers/admin/command/subscription_manager.py
+msgid ""
+"<b>%(title)s</b>\n"
+"\n"
+"Subscription added successfully."
+msgstr ""
+"<b>%(title)s</b>\n"
+"\n"
+"Обуна муваффақиятли қўшилди."
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Subscription not found."
+msgstr "Обуна топилмади."
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid ""
+"<b>%(title)s</b>\n"
+"\n"
+"Type      —  <b>%(chat_type)s</b>\n"
+"Chat ID   —  <b>%(chat_id)s</b>\n"
+"Status    —  <b>%(status)s</b>\n"
+"Tracker   —  <b>%(tracker)s</b>\n"
+"\n"
+"Updated at:   <i>%(updated_at)s</i>\n"
+"Refreshed at: <i>%(refreshed_at)s</i>"
+msgstr ""
+"<b>%(title)s</b>\n"
+"\n"
+"Тури        —  <b>%(chat_type)s</b>\n"
+"Chat ID     —  <b>%(chat_id)s</b>\n"
+"Ҳолат       —  <b>%(status)s</b>\n"
+"Трекер      —  <b>%(tracker)s</b>\n"
+"\n"
+"Янгиланган вақт:   <i>%(updated_at)s</i>\n"
+"Қайта янгиланган: <i>%(refreshed_at)s</i>"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Active"
+msgstr "Фаол"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Inactive"
+msgstr "Фаол эмас"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Subscription activated."
+msgstr "Обуна фаоллаштирилди."
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Subscription deactivated."
+msgstr "Обуна фаолсизлантирилди."
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Subscription deleted."
+msgstr "Обуна ўчирилди."
+
+#: src/handlers/users/callback/language.py:21
+msgid "Language updated successfully."
+msgstr "✅ Тил муваффақиятли янгиланди."
+
+#: src/handlers/users/callback/language.py:23
+#: src/handlers/users/command/language.py:13
+msgid "Choose your language:"
+msgstr "🌎 Тилингизни танланг:"
+
+#: src/keyboard/inline/manage_admin.py
+#: src/keyboard/inline/manage_user.py
+#: src/keyboard/inline/subscription_manager.py
+msgid "Confirm"
+msgstr "Тасдиқлаш"
+
+#: src/keyboard/inline/manage_admin.py
+#: src/keyboard/inline/manage_user.py
+#: src/keyboard/inline/subscription_manager.py
+msgid "Cancel"
+msgstr "Бекор қилиш"
+
+#: src/handlers/admin/message/manage_admin.py
+msgid "Are you sure you want to make <b>%(name)s</b> an admin?"
+msgstr "<b>%(name)s</b> ни админ қилмоқчи эканлигингизга ишончингиз комилми?"
+
+#: src/handlers/admin/callback/manage_admin.py
+msgid "Are you sure you want to remove <b>%(name)s</b> from admins?"
+msgstr "<b>%(name)s</b> ни админлар рўйхатидан олиб ташламоқчи эканлигингизга ишончингиз комилми?"
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "Are you sure you want to %(action)s this user?"
+msgstr "Бу фойдаланувчини %(action)s қилмоқчи эканлигингизга ишончингиз комилми?"
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "unblock"
+msgstr "блокдан чиқариш"
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "block"
+msgstr "блоклаш"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Are you sure you want to %(action)s %(title)s?"
+msgstr "%(title)s ни %(action)s қилмоқчи эканлигингизга ишончингиз комилми?"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "deactivate"
+msgstr "фаолсизлантириш"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "activate"
+msgstr "фаоллаштириш"
+
+#: src/handlers/admin/callback/subscription_manager.py
+msgid "Are you sure you want to delete %(title)s?"
+msgstr "%(title)s ни ўчирмоқчи эканлигингизга ишончингиз комилми?"
+
+#: src/keyboard/inline/subscription_check.py
+msgid "Subscribe"
+msgstr "Обуна бўлиш"
+
+#: src/keyboard/inline/subscription_check.py
+msgid "I have subscribed — check again"
+msgstr "Мен обуна бўлдим — қайта текшириш"
+
+#: src/middlewares/subscription.py
+msgid "You are not subscribed to all required channels."
+msgstr "⚠️ Сиз барча мажбурий каналларга обуна бўлмагансиз."
+
+#: src/middlewares/subscription.py
+msgid ""
+"To use this bot you must be subscribed to the following channels and groups.\n"
+"Please subscribe to each one and then tap the button below to verify."
+msgstr ""
+"⚠️ Бу ботдан фойдаланиш учун қуйидаги каналлар ва гуруҳларга обуна бўлишингиз керак.\n"
+"Илтимос, ҳар бирига обуна бўлинг ва кейин тасдиқлаш учун қуйидаги тугмани босинг."
+
+#: src/handlers/users/command/start.py
+#: src/handlers/users/callback/check_subscriptions.py
+msgid "Hello, world!"
+msgstr "🔥 Ассалому алайкум. @Vkmbot_musikbot га Хуш келибсиз. Бот орқали қуйидагиларни юклаб олишингиз мумкин:\n\n• Instagram - пост ва IGTV + аудио билан;\n• TikTok - сув белгисиз видео + аудио билан;\n• YouTube - видеолар ва shorts + аудио билан;\n• Snapchat - сув белгисиз видео + аудио билан;\n• Likee - сув белгисиз видео + аудио билан;\n• Pinterest - сув белгисиз видео ва расмлар + аудио билан;\n\nShazam функция:\n• Қўшиқ номи ёки ижрочи исми\n• Қўшиқ матни\n• Овозли хабар\n• Видео\n• Аудио\n• Видео хабар\n\n🚀 Юклаб олмоқчи бўлган видеога ҳаволани юборинг!"
+
+#: src/keyboard/inline/broadcast_history.py
+msgid "Broadcast history"
+msgstr "Хабар юбориш тарихи"
+
+#: src/keyboard/inline/broadcast_history.py
+msgid "New broadcast"
+msgstr "Янги хабар юбориш"
+
+#: src/keyboard/inline/broadcast_premium.py
+msgid "All users"
+msgstr "Барча фойдаланувчилар"
+
+#: src/keyboard/inline/broadcast_premium.py
+msgid "Premium only"
+msgstr "Фақат premium"
+
+#: src/keyboard/inline/manage_user.py
+msgid "Temp ban"
+msgstr "Вақтинчалик ban"
+
+#: src/keyboard/inline/manage_user.py
+msgid "Clear ban"
+msgstr "Banni олиб ташлаш"
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "Temporary ban cleared."
+msgstr "Вақтинчалик ban олиб ташланди."
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "Select how long to ban this user."
+msgstr "Бу фойдаланувчини қанча муддатга ban қилишни танланг."
+
+#: src/handlers/admin/callback/manage_user.py
+msgid "User has been temporarily banned."
+msgstr "Фойдаланувчи вақтінча ban қилинди."
+
+#: src/handlers/admin/callback/manage_admin.py
+#: src/handlers/admin/callback/broadcast_history.py
+msgid "Yes"
+msgstr "Ҳа"
+
+#: src/handlers/admin/callback/manage_admin.py
+#: src/handlers/admin/callback/broadcast_history.py
+msgid "No"
+msgstr "Йўқ"
+
+#: src/keyboard/inline/subscription_manager.py
+msgid "Reload"
+msgstr "Қайта юклаш"
+
+#: src/handlers/admin/callback/manage_admin.py
+msgid "Admin not found."
+msgstr "Админ топилмади."
+
+#: src/handlers/admin/callback/manage_admin.py
+#: src/handlers/admin/message/manage_admin.py
+msgid ""
+"<b>Admins</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Admins have full access to the management panel.\n"
+"They can manage users, subscriptions, and broadcasts.\n"
+"\n"
+"Select an admin from the list below to view details\n"
+"or tap <b>Add admin</b> to grant access to a new user."
+msgstr ""
+"<b>Админлар</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Админлар бошқарув панелига тўлиқ кириш ҳуқуқига эга.\n"
+"Улар фойдаланувчиларни, обуналарни ва хабар юборишни бошқаришлари мумкин.\n"
+"\n"
+"Тафсилотларни кўриш учун қуйидаги рўйхатдан админни танланг\n"
+"ёки янги фойдаланувчига рухсат бериш учун <b>Админ қўшиш</b> тугмасини босинг."
+
+#: src/handlers/admin/callback/manage_admin.py
+msgid ""
+"<b>%(name)s</b>\n"
+"\n"
+"Telegram ID  —  <b>%(telegram_id)s</b>\n"
+"Language     —  <b>%(language)s</b>\n"
+"Premium      —  <b>%(premium)s</b>\n"
+"Blocked      —  <b>%(blocked)s</b>\n"
+"Chat type    —  <b>%(chat_type)s</b>\n"
+"Joined       —  <b>%(joined)s</b>\n"
+"\n"
+"Refreshed at: <i>%(refreshed_at)s</i>"
+msgstr ""
+"<b>%(name)s</b>\n"
+"\n"
+"Telegram ID  —  <b>%(telegram_id)s</b>\n"
+"Тил          —  <b>%(language)s</b>\n"
+"Premium      —  <b>%(premium)s</b>\n"
+"Блокланган   —  <b>%(blocked)s</b>\n"
+"Chat тури    —  <b>%(chat_type)s</b>\n"
+"Қўшилган     —  <b>%(joined)s</b>\n"
+"\n"
+"Қайта янгиланган: <i>%(refreshed_at)s</i>"
+
+#: src/handlers/admin/message/manage_user.py
+msgid ""
+"<b>Users</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Blocked  —  <b>%(blocked)s</b>\n"
+"\n"
+"Send the Telegram ID of the user you want to manage."
+msgstr ""
+"<b>Фойдаланувчилар</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Блокланган  —  <b>%(blocked)s</b>\n"
+"\n"
+"Бошқармоқчи бўлган фойдаланувчининг Telegram ID рақамини юборинг."
+
+#: src/handlers/admin/callback/manage_user.py
+msgid ""
+"<b>%(name)s</b>\n"
+"\n"
+"Telegram ID  —  <b>%(telegram_id)s</b>\n"
+"Language     —  <b>%(language)s</b>\n"
+"Premium      —  <b>%(premium)s</b>\n"
+"Blocked      —  <b>%(blocked)s</b>%(banned_until_line)s\n"
+"Chat type    —  <b>%(chat_type)s</b>\n"
+"Status       —  <b>%(status)s</b>\n"
+"Joined       —  <b>%(joined)s</b>\n"
+"\n"
+"Refreshed at: <i>%(refreshed_at)s</i>"
+msgstr ""
+"<b>%(name)s</b>\n"
+"\n"
+"Telegram ID  —  <b>%(telegram_id)s</b>\n"
+"Тил          —  <b>%(language)s</b>\n"
+"Premium      —  <b>%(premium)s</b>\n"
+"Блокланган   —  <b>%(blocked)s</b>%(banned_until_line)s\n"
+"Chat тури    —  <b>%(chat_type)s</b>\n"
+"Ҳолат        —  <b>%(status)s</b>\n"
+"Қўшилган     —  <b>%(joined)s</b>\n"
+"\n"
+"Қайта янгиланган: <i>%(refreshed_at)s</i>"
+
+#: src/handlers/admin/message/broadcast.py
+msgid ""
+"<b>Step 2 of 5 — Target audience</b>\n"
+"\n"
+"Choose whether to send to all users or premium users only."
+msgstr ""
+"<b>5 босқичдан 2-босқич — Мақсадли аудитория</b>\n"
+"\n"
+"Барча фойдаланувчиларга ёки фақат premium фойдаланувчиларга юборишни танланг."
+
+#: src/utils/formatters/subscription.py
+msgid ""
+"<b>Mandatory subscription</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Active  —  <b>%(active)s</b>\n"
+"\n"
+"Select a subscription below or add a new one."
+msgstr ""
+"<b>Мажбурий обуна</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Фаол  —  <b>%(active)s</b>\n"
+"\n"
+"Қуйидан обунани танланг ёки янгисини қўшинг."
+
+#: src/handlers/admin/message/broadcast.py
+#: src/handlers/admin/callback/broadcast_history.py
+msgid ""
+"<b>Broadcast</b>\n"
+"\n"
+"Select an action."
+msgstr ""
+"<b>Хабар юбориш</b>\n"
+"\n"
+"Амални танланг."
+
+#: src/utils/formatters/broadcast.py
+msgid ""
+"<b>Broadcast</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Select a broadcast to view details or start a new one."
+msgstr ""
+"<b>Хабар юбориш</b>  —  <b>%(total)s</b>\n"
+"\n"
+"Тафсилотларни кўриш учун хабар юборишни танланг ёки янгисини бошланг."
+
+#: src/utils/formatters/broadcast.py
+msgid ""
+"<b>Broadcast</b>\n"
+"\n"
+"Languages   —  <b>%(langs)s</b>\n"
+"Chat types  —  <b>%(chat_types)s</b>\n"
+"Premium     —  <b>%(premium)s</b>\n"
+"Mode        —  <b>%(mode)s</b>\n"
+"\n"
+"Audience    —  <b>%(audience)s</b>\n"
+"Success     —  <b>%(success)s  (%(percent)s%%)</b>\n"
+"Failed      —  <b>%(failed)s</b>\n"
+"Blocked     —  <b>%(blocked)s</b>\n"
+"\n"
+"Created at: <i>%(created_at)s</i>"
+msgstr ""
+"<b>Хабар юбориш</b>\n"
+"\n"
+"Тиллар       —  <b>%(langs)s</b>\n"
+"Chat турлари —  <b>%(chat_types)s</b>\n"
+"Premium      —  <b>%(premium)s</b>\n"
+"Режим        —  <b>%(mode)s</b>\n"
+"\n"
+"Аудитория    —  <b>%(audience)s</b>\n"
+"Муваффақиятли —  <b>%(success)s  (%(percent)s%%)</b>\n"
+"Муваффақиятсиз —  <b>%(failed)s</b>\n"
+"Блокланган   —  <b>%(blocked)s</b>\n"
+"\n"
+"Яратилган вақт: <i>%(created_at)s</i>"
+
+#: src/keyboard/inline/broadcast_language.py
+#: src/keyboard/inline/broadcast_chat_type.py
+msgid "Continue"
+msgstr "Давом этиш"
+
+#: src/keyboard/inline/broadcast_mode.py
+msgid "Copy"
+msgstr "Нусха"
+
+#: src/handlers/users/message/search.py
+msgid "No results found."
+msgstr "🔍 Ҳеч нарса топилмади."
+
+#: src/utils/formatters/youtube.py
+msgid ""
+"<b>%(num)s. %(title)s</b>\n"
+"\n"
+"Artists: <b>%(artists)s</b>\n"
+"Album: <b>%(album)s</b>\n"
+"Duration: <b>%(duration)s</b>\n"
+"Views: <b>%(views)s</b>"
+msgstr ""
+"<b>%(num)s. %(title)s</b>\n"
+"\n"
+"Ижрочилар: <b>%(artists)s</b>\n"
+"Альбом: <b>%(album)s</b>\n"
+"Давомийлиги: <b>%(duration)s</b>\n"
+"Кўришлар: <b>%(views)s</b>"
+
+#: src/handlers/users/message/search.py
+msgid "Search results for: <b>%(query)s</b>"
+msgstr "Қидирув натижалари: <b>%(query)s</b>"
+
+#: src/keyboard/inline/youtube_search.py
+msgid "Next"
+msgstr "Кейинги"
+
+#: src/handlers/users/callback/youtube_search.py
+msgid "Downloading..."
+msgstr "⏳ Юклаб олинмоқда..."
+
+#: src/handlers/users/callback/youtube_search.py
+msgid "Download failed."
+msgstr "❌ Юклаб олиш муваффақиятсиз тугади."
+
+#: src/keyboard/inline/broadcast_mode.py
+msgid "Forward"
+msgstr "Forward"
+
+#: src/handlers/users/message/_recognition.py
+msgid "Processing..."
+msgstr "⏳ Қайта ишланмоқда..."
+
+#: src/handlers/users/message/_recognition.py
+msgid "File is too large. Maximum size is 10MB."
+msgstr "‼️ <b>Файл жуда катта.</b> Максимал ҳажм 10MB."
+
+#: src/handlers/users/message/_recognition.py
+msgid "Audio is too short. Minimum duration is 2 seconds."
+msgstr "‼️ <b>Аудио жуда қисқа.</b> Минимал давомийлик 2 сония."
+
+#: src/handlers/users/message/voice_recognize.py
+msgid "Song not recognized. Select a language to transcribe:"
+msgstr "🎵 Қўшиқ аниқланмади. Транскрипция учун тилни танланг:"
+
+#: src/handlers/users/callback/transcription_language.py
+msgid "Could not transcribe the audio."
+msgstr "❌ Аудио транскрипция қилинмади."
+
+#: src/handlers/users/callback/transcription_language.py
+msgid "No results found for the transcription."
+msgstr "❌ Транскрипция бўйича натижа топилмади."
+
+#: src/handlers/users/message/instagram.py
+msgid "Could not fetch the Instagram media."
+msgstr "❌ Instagram media файлини олиб бўлмади."
+
+#: src/handlers/users/message/tiktok.py
+msgid "Could not fetch the TikTok video."
+msgstr "❌ TikTok видеосини олиб бўлмади."
+
+#: src/handlers/users/message/instagram.py
+msgid "No downloadable video found."
+msgstr "❌ Юклаб олиш мумкин бўлган видео топилмади."
+
+#: src/handlers/users/command/settings.py
+#: src/handlers/users/callback/language.py
+msgid "<b>Settings</b>\n\nWhat would you like to change?"
+msgstr "⚙️ <b>Созламалар</b>\n\nНимани ўзгартирмоқчисиз?"
+
+#: src/keyboard/inline/settings.py
+msgid "Language"
+msgstr "Тил"
+
+#: src/keyboard/inline/settings.py
+msgid "Max results: %(max)s"
+msgstr "Максимал натижалар: %(max)s"
+
+#: src/keyboard/inline/settings.py
+msgid "Like buttons: %(status)s"
+msgstr "Like тугмалари: %(status)s"
+
+#: src/keyboard/inline/settings.py
+#: src/keyboard/inline/audio_download.py
+#: src/handlers/users/callback/playlist.py
+#: src/keyboard/inline/video_recognize.py
+msgid "Close"
+msgstr "Ёпиш"
+
+#: src/keyboard/inline/video_recognize.py
+msgid "Recognize music in video"
+msgstr "Видеодаги мусиқани аниқлаш"
+
+#: src/keyboard/inline/audio_download.py
+msgid "Like"
+msgstr "Ёқди"
+
+#: src/keyboard/inline/audio_download.py
+msgid "Unlike"
+msgstr "Ёқмади"
+
+#: src/handlers/users/callback/audio_playlist.py
+msgid "Saved to playlist"
+msgstr "✅ Плейлистга сақланди"
+
+#: src/handlers/users/callback/audio_playlist.py
+msgid "Removed from playlist"
+msgstr "🗑 Плейлистдан олиб ташланди"
+
+#: src/utils/formatters/playlist.py
+msgid "<b>My playlist</b>\n\n%(items)s"
+msgstr "<b>Менинг плейлистим</b>\n\n%(items)s"
+
+#: src/utils/formatters/playlist.py
+msgid "<b>Your playlist:</b> %(page_start)d-%(page_end)d of %(total)d\n\n%(items)s"
+msgstr "<b>Сизнинг плейлистингиз:</b> %(page_start)d-%(page_end)d / %(total)d\n\n%(items)s"
+
+#: src/handlers/users/command/my.py
+#: src/handlers/users/callback/playlist.py
+msgid "Your playlist is empty."
+msgstr "🎵 Плейлистингиз бўш."
+
+msgid "Find any music you want quickly and easily via %(username_bot)s!"
+msgstr "%(username_bot)s орқали истаган мусиқангизни тез ва осон топинг!"
+
+#: src/keyboard/inline/start.py
+msgid "Add bot to group"
+msgstr "⤴️ Гуруҳга қўшиш"
+
+#: src/keyboard/inline/start.py
+#: src/handlers/users/inline/search.py
+msgid "Inline search"
+msgstr "🔍 Тез қидирув"
+
+msgid "No results found. Did you mean:"
+msgstr "🔍 Ҳеч нарса топилмади. Балки сиз қидирмоқчи:"
+
+msgid "Select a mood:"
+msgstr "🎭 <b>Кайфият танланг</b>\n\nЎзингизга мос кайфиятни танланг, мен сизга пleylistларни кўрсатаман:"
+
+msgid "Select a playlist:"
+msgstr "🎵 <b>Плейлист танланг</b>\n\nТанланган кайфият учун мавжуд плейлистлар:"
+
+msgid "Daily charts"
+msgstr "Кунлик чартлар"
+
+msgid "Daily charts settings"
+msgstr "📅 <b>Кунлик чартлар</b>\n\nКунлик автоматик чарт юборишни созланг:"
+
+msgid "Select country for daily charts:"
+msgstr "🌍 Мамлакат танланг:"
+
+msgid "Select hour:"
+msgstr "🕐 Соатни танланг:"
+
+msgid "Select time:"
+msgstr "⏰ Вақтни танланг:"
+
+msgid "Daily charts set: %(flag)s at %(time)s"
+msgstr "✅ Кунлик чартлар ўрнатилди: %(flag)s %(time)s да ҳар куни."
+
+msgid "Daily charts disabled."
+msgstr "❌ Кунлик чартлар ўчирилди."
+
+msgid "Active: %(flag)s at %(time)s"
+msgstr "✅ Фаол: %(flag)s %(time)s да"
+
+msgid "Disable daily charts"
+msgstr "❌ Ўчириш"
+
+msgid "Choose country"
+msgstr "🌍 Мамлакат танлаш"
+
+msgid "Too many requests. Please slow down."
+msgstr "⏳ Жуда кўп сўров. Илтимос, секинроқ."
+
+msgid "Banned until"
+msgstr "Бан муддати"
+
+msgid "<b>Results</b>:\n\n%(results)s"
+msgstr "<b>Натижалар</b>:\n\n%(results)s"
+
+msgid "Broadcast finished"
+msgstr "Хабар юбориш якунланди"
+
+msgid "This button is no longer active."
+msgstr "Бу тугма энди фаол эмас."
+
+msgid "Track not found."
+msgstr "❌ Трек топилмади."
+
+msgid "Nothing to download."
+msgstr "Юклаб олиш учун ҳеч нарса йўқ."
+
+msgid "No charts available."
+msgstr "😔 Чартлар мавжуд эмас."
+
+msgid "Thank you for subscribing!"
+msgstr "✅ Обуна бўлганингиз учун раҳмат!"
+
+msgid "No moods available."
+msgstr "😔 Кайфиятлар мавжуд эмас."
+
+msgid "No playlists found."
+msgstr "😔 Плейлистлар топилмади."
+
+msgid "No tracks found."
+msgstr "😔 Треклар топилмади."
+
+msgid "This search has expired. Please send your query again."
+msgstr "⌛ Бу қидирув эскирган. Илтимос, сўровни қайтадан юборинг."
+
+msgid "Song not recognized."
+msgstr "🎵 Қўшиқ аниқланмади."
+
+msgid "Video is too short. Minimum duration is 2 seconds."
+msgstr "⚠️ Видео жуда қисқа. Минимал давомийлик — 2 сония."
+
+msgid "Start now"
+msgstr "Ҳозир бошлаш"
+
+msgid "1 hour later"
+msgstr "1 соатдан кейин"
+
+msgid "3 hours later"
+msgstr "3 соатдан кейин"
+
+msgid "6 hours later"
+msgstr "6 соатдан кейин"
+
+msgid "12 hours later"
+msgstr "12 соатдан кейин"
+
+msgid "24 hours later"
+msgstr "24 соатдан кейин"
+
+msgid "1 hour"
+msgstr "1 соат"
+
+msgid "1 day"
+msgstr "1 кун"
+
+msgid "7 days"
+msgstr "7 кун"
+
+msgid "Private"
+msgstr "Шахсий"
+
+msgid "Group"
+msgstr "Гуруҳ"
+
+msgid "Supergroup"
+msgstr "Супергуруҳ"
+
+#: src/handlers/users/message/youtube.py
+msgid "Could not fetch the video."
+msgstr "Видеони юклаб бўлмади."
