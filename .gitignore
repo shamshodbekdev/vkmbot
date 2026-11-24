@@ -33,3 +33,6 @@ downloads/
 .vscode/
 *.swp
 .DS_Store
+
+# Local Bot API server data (downloaded files, bot sessions)
+telegram-bot-api-data/

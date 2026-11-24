@@ -1,0 +1,34 @@
+# Local Telegram Bot API server for vkm-bot (lifts the upload limit from 50 MB to 2 GB).
+#
+# Start / update:
+#   docker compose --env-file .env -f deploy/telegram-bot-api/docker-compose.yml up -d
+# (run from the project root; only TELEGRAM_API_ID / TELEGRAM_API_HASH are read from .env)
+#
+# The bot runs outside Docker and reads files the server stores in --local mode,
+# so the data directory is mounted at the *same path* inside the container.
+name: vkm-telegram-bot-api
+
+services:
+  telegram-bot-api:
+    image: aiogram/telegram-bot-api:10.3
+    container_name: vkm-telegram-bot-api
+    restart: unless-stopped
+    environment:
+      TELEGRAM_API_ID: ${TELEGRAM_API_ID:?set TELEGRAM_API_ID in .env}
+      TELEGRAM_API_HASH: ${TELEGRAM_API_HASH:?set TELEGRAM_API_HASH in .env}
+      TELEGRAM_LOCAL: "1"
+      TELEGRAM_WORK_DIR: /home/python.botlarim/vkm-bot/telegram-bot-api-data
+    ports:
+      # Localhost only: Docker bypasses firewalld, and a public Bot API server
+      # could be used by anyone with any bot token.
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - /home/python.botlarim/vkm-bot/telegram-bot-api-data:/home/python.botlarim/vkm-bot/telegram-bot-api-data
+      # The bot's download folder, read-only: videos are sent as file:///path, so the
+      # server reads them from disk instead of receiving a second copy over HTTP.
+      - /tmp/vkm-bot-media:/tmp/vkm-bot-media:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
