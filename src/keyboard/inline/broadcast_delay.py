@@ -21,5 +21,11 @@ class BroadcastDelayKeyboard:
                     ).pack(),
                 )
             )
+        builder.row(
+            InlineKeyboardButton(
+                text=_("📅 Pick date and time"),
+                callback_data=BroadcastDelayCallback(seconds=-1, action="custom").pack(),
+            )
+        )
         builder.adjust(1)
         return builder.as_markup()

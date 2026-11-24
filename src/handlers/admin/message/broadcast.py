@@ -1,10 +1,10 @@
 from contextlib import suppress
 import datetime
 import uuid
-from typing import List
+from typing import List, Optional
 
 from aiogram import F, Router
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 from aiogram.exceptions import TelegramAPIError
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
@@ -33,14 +33,33 @@ from states.admin.broadcast import BroadcastState
 from services.broadcast.broadcast import BroadcastService
 from services.broadcast.enums import BroadcastMode
 from core.scheduler import scheduler
-from utils.constants.broadcast import BROADCAST_DELAYS
+from utils.constants.broadcast import BROADCAST_DELAYS, BROADCAST_TIMEZONE, MAX_SCHEDULE_DAYS
+from zoneinfo import ZoneInfo
 
 router = Router()
+_LOCAL_TZ = ZoneInfo(BROADCAST_TIMEZONE)
+_DATETIME_FORMAT = "%d.%m.%Y %H:%M"
 
 
-def _delay_label(delay_seconds: int) -> str:
+def _delay_label(delay_seconds: int, run_at: Optional[str] = None) -> str:
+    if run_at:
+        local = datetime.datetime.fromisoformat(run_at).astimezone(_LOCAL_TZ)
+        return "%s (%s)" % (local.strftime(_DATETIME_FORMAT), _("Tashkent time"))
     label = next((label for seconds, label in BROADCAST_DELAYS if seconds == delay_seconds), BROADCAST_DELAYS[0][1])
     return _(label)
+
+
+def _step5_text() -> str:
+    return _(
+        "<b>Step 5 of 5 — Broadcast message</b>\n"
+        "\n"
+        "Send the message you want to broadcast to the selected audience.\n"
+        "\n"
+        "Supported types: text, photo, video, audio, document, sticker, voice, animation, and more.\n"
+        "The message will be delivered exactly as you send it.\n"
+        "\n"
+        "Send your message now."
+    )
 
 
 def _mode_label(mode: str) -> str:
@@ -236,7 +255,52 @@ async def broadcast_chat_type_done_handler(
 
 
 @router.callback_query(
-    BroadcastDelayCallback.filter(),
+    BroadcastDelayCallback.filter(F.action == "custom"),
+    BroadcastState.WAITING_FOR_DELAY,
+    IsAdmin(),
+)
+async def broadcast_custom_time_handler(callback: CallbackQuery, state: FSMContext) -> None:
+    await state.set_state(BroadcastState.WAITING_FOR_DATETIME)
+    example = (datetime.datetime.now(_LOCAL_TZ) + datetime.timedelta(hours=2)).strftime(_DATETIME_FORMAT)
+    await callback.message.edit_text(
+        text=_(
+            "<b>📅 Schedule</b>\n"
+            "\n"
+            "Send the date and time in this format:\n"
+            "<code>DD.MM.YYYY HH:MM</code>  (Tashkent time)\n"
+            "\n"
+            "Example: <code>%(example)s</code>"
+        ) % dict(example=example)
+    )
+    await callback.answer()
+
+
+@router.message(BroadcastState.WAITING_FOR_DATETIME, F.text, ~F.text.in_({"⬅️"}), IsAdmin())
+async def broadcast_datetime_handler(message: Message, state: FSMContext) -> None:
+    try:
+        local = datetime.datetime.strptime(message.text.strip(), _DATETIME_FORMAT).replace(tzinfo=_LOCAL_TZ)
+    except ValueError:
+        await message.answer(
+            text=_("❌ Wrong format. Send it like <code>%(example)s</code>.") % dict(
+                example=(datetime.datetime.now(_LOCAL_TZ) + datetime.timedelta(hours=2)).strftime(_DATETIME_FORMAT),
+            )
+        )
+        return
+    now = datetime.datetime.now(datetime.timezone.utc)
+    run_at = local.astimezone(datetime.timezone.utc)
+    if run_at <= now + datetime.timedelta(minutes=1):
+        await message.answer(text=_("❌ This time has already passed. Send a time in the future."))
+        return
+    if run_at > now + datetime.timedelta(days=MAX_SCHEDULE_DAYS):
+        await message.answer(text=_("❌ You can schedule at most %(days)s days ahead.") % dict(days=MAX_SCHEDULE_DAYS))
+        return
+    await state.update_data(delay=int((run_at - now).total_seconds()), run_at=run_at.isoformat())
+    await state.set_state(BroadcastState.WAITING_FOR_MESSAGE)
+    await message.answer(text=_step5_text())
+
+
+@router.callback_query(
+    BroadcastDelayCallback.filter(F.action != "custom"),
     BroadcastState.WAITING_FOR_DELAY,
     IsAdmin(),
 )
@@ -245,20 +309,9 @@ async def broadcast_delay_handler(
     callback_data: BroadcastDelayCallback,
     state: FSMContext,
 ) -> None:
-    await state.update_data(delay=callback_data.seconds)
+    await state.update_data(delay=callback_data.seconds, run_at=None)
     await state.set_state(BroadcastState.WAITING_FOR_MESSAGE)
-    await callback.message.edit_text(
-        text=_(
-            "<b>Step 5 of 5 — Broadcast message</b>\n"
-            "\n"
-            "Send the message you want to broadcast to the selected audience.\n"
-            "\n"
-            "Supported types: text, photo, video, audio, document, sticker, voice, animation, and more.\n"
-            "The message will be delivered exactly as you send it.\n"
-            "\n"
-            "Send your message now."
-        )
-    )
+    await callback.message.edit_text(text=_step5_text())
     await callback.answer()
 
 
@@ -300,7 +353,7 @@ async def broadcast_mode_handler(
     await state.set_state(BroadcastState.WAITING_FOR_CONFIRM)
     data = await state.get_data()
     delay_seconds = data.get("delay", 0)
-    delay_label = _delay_label(delay_seconds)
+    delay_label = _delay_label(delay_seconds, data.get("run_at"))
     audience = await BroadcastService.count_audience(
         languages=data.get("languages", []),
         chat_types=data.get("chat_types", []),
@@ -340,7 +393,7 @@ async def broadcast_confirm_handler(
         is_premium=is_premium,
     )
     delay_seconds = data.get("delay", 0)
-    delay_label = _delay_label(delay_seconds)
+    delay_label = _delay_label(delay_seconds, data.get("run_at"))
     started_text = build_broadcast_started(
         audience=audience,
         mode=_mode_label(mode),
@@ -361,7 +414,11 @@ async def broadcast_confirm_handler(
         ),
     )
     await callback.answer()
-    run_date = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=delay_seconds)
+    run_date = (
+        datetime.datetime.fromisoformat(data["run_at"])
+        if data.get("run_at")
+        else datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=delay_seconds)
+    )
     scheduler.add_job(
         BroadcastService.create,
         "date",
@@ -381,6 +438,29 @@ async def broadcast_confirm_handler(
             notify_message_id=callback.message.message_id,
             locale=user.language_code if user else None,
         ),
+    )
+
+
+@router.callback_query(
+    BroadcastConfirmCallback.filter(F.action == "test"),
+    BroadcastState.WAITING_FOR_CONFIRM,
+    IsAdmin(),
+)
+async def broadcast_test_handler(callback: CallbackQuery, state: FSMContext) -> None:
+    """Send the broadcast only to the admin, exactly as recipients will get it."""
+    data = await state.get_data()
+    result = await BroadcastService._send(
+        bot=callback.bot,
+        chat_id=callback.message.chat.id,
+        source_chat_id=data.get("source_chat_id"),
+        source_message_id=data.get("source_message_id"),
+        mode=BroadcastMode(data.get("mode")),
+        reply_markup=InlineKeyboardMarkup.model_validate(data["reply_markup"]) if data.get("reply_markup") else None,
+    )
+    await callback.answer(
+        text=_("🧪 Test message sent to you. Check it, then confirm or cancel.") if result == "success"
+        else _("❌ Could not send the test message."),
+        show_alert=True,
     )
 
 

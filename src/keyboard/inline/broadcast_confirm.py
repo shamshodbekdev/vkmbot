@@ -19,6 +19,12 @@ class BroadcastConfirmKeyboard:
         )
         builder.row(
             InlineKeyboardButton(
+                text=_("🧪 Send a test to me"),
+                callback_data=BroadcastConfirmCallback(action="test").pack(),
+            ),
+        )
+        builder.row(
+            InlineKeyboardButton(
                 text=_("Cancel"),
                 icon_custom_emoji_id="5465665476971471368",
                 callback_data=BroadcastConfirmCallback(
