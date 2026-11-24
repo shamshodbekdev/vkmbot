@@ -1,96 +1,82 @@
 import io
-import numpy as np
-from schemas.analytics import AnalyticsReportSchema
 
-import matplotlib
+from aiogram.utils.i18n import gettext as _
+from matplotlib.ticker import FuncFormatter, MaxNLocator
 
-matplotlib.use("Agg")
+from schemas.analytics import AnalyticsReportSchema, GrowthSchema
+from services.charts import style
 
-from matplotlib.axes import Axes  # noqa: E402
-from matplotlib.figure import Figure  # noqa: E402
+
+def _delta(growth: GrowthSchema):
+    """Change vs the previous period as text + colour; the arrow carries the meaning, not the colour alone."""
+    if growth.change > 0:
+        return "▲ +%s  (+%g%%)" % (style.number(growth.change), round(growth.rate, 1)), style.UP
+    if growth.change < 0:
+        return "▼ −%s  (−%g%%)" % (style.number(-growth.change), abs(round(growth.rate, 1))), style.DOWN
+    return "— " + _("no change"), style.MUTED
 
 
 class AnalyticsChartService:
-    @staticmethod
-    def _plot_two(ax: Axes, labels: list, current: list, previous: list) -> None:
-        x = list(range(len(labels)))
-        x_smooth = np.linspace(0, len(x) - 1, 200)
-        coeffs = np.polyfit(x, current, min(2, len(x) - 1))
-        y_smooth = np.polyval(coeffs, x_smooth)
-        ax.plot(x_smooth, y_smooth, "-", color="#1a6bbf", linewidth=1.8, zorder=2)
-        ax.scatter(x, current, marker="x", color="#1a4a8a", s=70, linewidths=2, zorder=3)
-        ax.plot(x, previous, "o--", color="#7ab0e0", linewidth=1.2, markersize=5, zorder=1)
-        ax.set_xticks(x)
-        ax.set_xticklabels(labels, fontsize=9)
-        ax.axhline(0, color="#cccccc", linewidth=0.6, linestyle=":")
+    """Admin "Analytics" picture: 30-day new-user trend + today / 7 / 30 day comparison + languages."""
 
-    @staticmethod
-    def _style(ax: Axes, title: str) -> None:
-        ax.set_title(title, fontsize=10, pad=8)
-        ax.grid(True, linestyle="-", linewidth=0.5, color="#dddddd")
+    @classmethod
+    def _trend(cls, fig, report: AnalyticsReportSchema) -> None:
+        ax = fig.add_axes((0.1, 0.48, 0.86, 0.33))
+        days = [point.day for point in report.daily_new]
+        counts = [point.count for point in report.daily_new]
+        x = list(range(len(days)))
+
+        if x:
+            ax.fill_between(x, counts, color=style.SERIES, alpha=0.12, linewidth=0, zorder=1)
+            ax.plot(x, counts, color=style.SERIES, linewidth=2, solid_joinstyle="round", zorder=2)
+            # Mark and label only the last day and the best day.
+            peak = max(range(len(counts)), key=lambda i: (counts[i], i))
+            for index in sorted({peak, len(x) - 1}):
+                ax.scatter([index], [counts[index]], s=42, color=style.SERIES,
+                           edgecolors=style.SURFACE, linewidths=2, zorder=3)
+                ax.annotate(style.number(counts[index]), (index, counts[index]), xytext=(0, 9),
+                            textcoords="offset points", ha="center", fontsize=9.5,
+                            fontweight="bold", color=style.INK, family=style.FONT)
+            step = max(1, len(x) // 6)
+            ticks = list(range(len(x) - 1, -1, -step))[::-1]
+            ax.set_xticks(ticks)
+            ax.set_xticklabels([days[i].strftime("%d.%m") for i in ticks])
+            ax.set_xlim(-0.5, len(x) - 0.5)
+            ax.set_ylim(0, max(max(counts), 1) * 1.25)
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=4, integer=True))
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: style.compact(value)))
+        ax.grid(axis="y", color=style.GRID, linewidth=0.8, zorder=0)
         ax.set_axisbelow(True)
-        for spine in ax.spines.values():
-            spine.set_linewidth(0.8)
-            spine.set_color("#aaaaaa")
-        ax.tick_params(colors="#444444", length=0)
-        ax.yaxis.set_tick_params(labelsize=8)
-
-    @classmethod
-    def _ax_growth(cls, ax: Axes, report: AnalyticsReportSchema) -> None:
-        labels = ["daily", "weekly", "monthly"]
-        current = [
-            report.daily.users.current,
-            report.weekly.users.current,
-            report.monthly.users.current,
-        ]
-        previous = [
-            report.daily.users.previous,
-            report.weekly.users.previous,
-            report.monthly.users.previous,
-        ]
-        cls._plot_two(ax, labels, current, previous)
-        cls._style(ax, "New users  (current vs previous)")
-
-    @classmethod
-    def _ax_rates(cls, ax: Axes, report: AnalyticsReportSchema) -> None:
-        labels = ["daily", "weekly", "monthly"]
-        rates = [
-            report.daily.users.rate,
-            report.weekly.users.rate,
-            report.monthly.users.rate,
-        ]
-        x = list(range(len(labels)))
-        x_smooth = np.linspace(0, len(x) - 1, 200)
-        coeffs = np.polyfit(x, rates, min(2, len(x) - 1))
-        y_smooth = np.polyval(coeffs, x_smooth)
-        ax.plot(x_smooth, y_smooth, "-", color="#1a6bbf", linewidth=1.8, zorder=2)
-        ax.scatter(x, rates, marker="x", color="#1a4a8a", s=70, linewidths=2, zorder=3)
-        ax.set_xticks(x)
-        ax.set_xticklabels(labels, fontsize=9)
-        ax.axhline(0, color="#aaaaaa", linewidth=0.8, linestyle="--")
-        cls._style(ax, "Growth rate %")
-
-    @classmethod
-    def _ax_language_rates(cls, ax: Axes, report: AnalyticsReportSchema) -> None:
-        labels = ["uz", "ru", "en", "not set"]
-        langs = report.daily.languages
-        current = [langs.uz.current, langs.ru.current, langs.en.current, langs.not_set.current]
-        previous = [langs.uz.previous, langs.ru.previous, langs.en.previous, langs.not_set.previous]
-        cls._plot_two(ax, labels, current, previous)
-        cls._style(ax, "Language growth  (current vs previous)")
+        style.clean_axes(ax)
+        ax.set_xlabel(_("Days"), fontsize=9.5, color=style.MUTED, family=style.FONT, labelpad=6)
+        ax.set_ylabel(_("New users"), fontsize=9.5, color=style.MUTED, family=style.FONT, labelpad=8)
 
     @classmethod
     def generate(cls, report: AnalyticsReportSchema) -> io.BytesIO:
-        fig = Figure(figsize=(10, 12))
-        axes = fig.subplots(3, 1)
-        fig.patch.set_facecolor("#ffffff")
-        fig.subplots_adjust(hspace=0.5, left=0.12, right=0.97, top=0.93, bottom=0.06)
+        fig = style.new_figure(10, 7.2)
+        style.header(fig, _("Analytics"), _("New users · last 30 days"))
+        cls._trend(fig, report)
 
-        cls._ax_growth(axes[0], report)
-        cls._ax_rates(axes[1], report)
-        cls._ax_language_rates(axes[2], report)
+        periods = (
+            (_("Last 24 hours"), report.daily.users),
+            (_("Last 7 days"), report.weekly.users),
+            (_("Last 30 days"), report.monthly.users),
+        )
+        left, gap, width = 0.04, 0.018, 0.175
+        for index, (label, growth) in enumerate(periods):
+            note, color = _delta(growth)
+            style.tile(fig, (left + index * (width + gap), 0.08, width, 0.25),
+                       label, style.number(growth.current), note, color)
+        fig.text(0.04, 0.36, _("Compared with the previous period"), fontsize=10,
+                 color=style.INK_SECONDARY, family=style.FONT)
 
-        buffer = io.BytesIO()
-        fig.savefig(buffer, format="png", dpi=160, bbox_inches="tight")
-        buffer.seek(0)
-        return buffer
+        languages = report.monthly.languages
+        style.hbars(fig, (0.62, 0.08, 0.34, 0.27), _("By language · 30 days"), [
+            ("O'zbek", languages.uz.current),
+            ("Русский", languages.ru.current),
+            ("English", languages.en.current),
+            (_("Not chosen"), languages.not_set.current),
+        ], label_width=0.1)
+
+        style.footer(fig)
+        return style.to_png(fig)

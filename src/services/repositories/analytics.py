@@ -1,5 +1,7 @@
 import datetime
 from typing import Optional
+from tortoise import Tortoise
+
 from database.models import User
 from aiogram.enums import ChatType
 from utils.constants import ACTIVE_STATUSES
@@ -9,9 +11,17 @@ from schemas.analytics import (
     LanguageGrowthSchema,
     AnalyticsPeriodSchema,
     AnalyticsReportSchema,
+    DailyCountSchema,
 )
 
 UTC = datetime.timezone.utc
+TREND_DAYS: int = 30
+TREND_TIMEZONE: str = "Asia/Tashkent"
+
+
+def _tz() -> datetime.tzinfo:
+    from zoneinfo import ZoneInfo
+    return ZoneInfo(TREND_TIMEZONE)
 
 
 class AnalyticsService:
@@ -91,6 +101,28 @@ class AnalyticsService:
         )
 
     @classmethod
+    async def _daily_new(cls, days: int = TREND_DAYS) -> list:
+        """New private users per Tashkent day for the last ``days`` days (one GROUP BY on the created_at index)."""
+        today = datetime.datetime.now(UTC).astimezone(_tz()).date()
+        first = today - datetime.timedelta(days=days - 1)
+        rows = await Tortoise.get_connection("default").execute_query_dict(
+            "SELECT (created_at AT TIME ZONE $1)::date AS day, COUNT(*) AS count FROM users "
+            "WHERE chat_type = $2 AND chat_status = ANY($3::varchar[]) AND created_at >= $4 "
+            "GROUP BY 1",
+            [
+                TREND_TIMEZONE,
+                ChatType.PRIVATE.value,
+                [status.value for status in ACTIVE_STATUSES],
+                datetime.datetime.combine(first, datetime.time(), tzinfo=_tz()),
+            ],
+        )
+        counts = {row["day"]: row["count"] for row in rows}
+        return [
+            DailyCountSchema(day=day, count=counts.get(day, 0))
+            for day in (first + datetime.timedelta(days=offset) for offset in range(days))
+        ]
+
+    @classmethod
     async def get_report(cls) -> AnalyticsReportSchema:
         return AnalyticsReportSchema(
             daily=AnalyticsPeriodSchema(
@@ -105,4 +137,5 @@ class AnalyticsService:
                 users=await cls._growth(30, 60, 30),
                 languages=await cls._language_growth(30, 60, 30),
             ),
+            daily_new=await cls._daily_new(),
         )

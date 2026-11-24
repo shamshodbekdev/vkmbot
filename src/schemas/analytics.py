@@ -1,4 +1,6 @@
-from dataclasses import dataclass
+import datetime
+from dataclasses import dataclass, field
+from typing import List
 
 
 @dataclass
@@ -24,7 +26,15 @@ class AnalyticsPeriodSchema:
 
 
 @dataclass
+class DailyCountSchema:
+    day: datetime.date
+    count: int
+
+
+@dataclass
 class AnalyticsReportSchema:
     daily: AnalyticsPeriodSchema
     weekly: AnalyticsPeriodSchema
     monthly: AnalyticsPeriodSchema
+    # New private users per day (Tashkent calendar days), oldest first, for the trend chart.
+    daily_new: List[DailyCountSchema] = field(default_factory=list)
