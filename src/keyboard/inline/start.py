@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.utils.i18n import gettext as _
 
-from core.config import config
+from core.bot_identity import add_to_group_url
 
 
 class StartKeyboard:
@@ -12,7 +12,7 @@ class StartKeyboard:
         builder.row(
             InlineKeyboardButton(
                 text=_("Add bot to group"),
-                url="https://t.me/%(username)s?startgroup=true" % dict(username=config.telegram_username.replace("@", "")),
+                url=add_to_group_url(),
             )
         )
         return builder.as_markup()
