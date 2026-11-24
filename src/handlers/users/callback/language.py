@@ -1,5 +1,5 @@
 from contextlib import suppress
-from aiogram import F, Router
+from aiogram import Bot, F, Router
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import CallbackQuery
 from aiogram.utils.i18n import I18n
@@ -7,9 +7,10 @@ from aiogram.utils.i18n import gettext as _
 
 from database.models import User, UserPreferences
 from filters.callback import LanguageCallback
-from keyboard.inline import LanguageKeyboard, SettingsKeyboard
+from keyboard.inline import LanguageKeyboard, SettingsKeyboard, StartKeyboard
+from middlewares.subscription import not_joined_subscriptions, subscription_prompt
 from utils.constants import LANGUAGES
-from utils.helpers import safe_delete
+from utils.helpers import mark_language_chosen, safe_delete
 
 router = Router()
 
@@ -28,6 +29,7 @@ async def language_callback_handler(
     callback_data: LanguageCallback,
     user: User,
     i18n: I18n,
+    bot: Bot,
 ) -> None:
     if callback_data.language_code not in _LANGUAGE_CODES:
         await callback.answer()
@@ -37,9 +39,23 @@ async def language_callback_handler(
         user.language_code = callback_data.language_code
         await user.save()
 
+    if callback.from_user is not None:
+        await mark_language_chosen(callback.from_user.id)
+
     # Switch the locale for the rest of this update so the reply is already translated.
     i18n.current_locale = user.language_code
     await callback.answer(_("Language updated successfully."))
+
+    if callback_data.action == "start":
+        # First visit: next comes the mandatory subscription (if any), then the main menu.
+        await safe_delete(callback.message)
+        not_joined = await not_joined_subscriptions(bot=bot, user_id=callback.from_user.id)
+        if not_joined:
+            text, markup = subscription_prompt(not_joined)
+            await callback.message.answer(text=text, reply_markup=markup)
+        else:
+            await callback.message.answer(text=_("Hello, world!"), reply_markup=StartKeyboard.make())
+        return
 
     with suppress(TelegramBadRequest):
         if callback_data.action == "settings":

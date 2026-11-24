@@ -4,20 +4,35 @@ from typing import Any, Awaitable, Callable, Dict, List, Optional
 from aiogram import BaseMiddleware, Bot
 from aiogram.enums import ChatMemberStatus, ChatType
 from aiogram.exceptions import TelegramBadRequest
-from aiogram.types import Update
+from aiogram.types import InlineKeyboardMarkup, Update
 from aiogram.utils.i18n import gettext as _
 from tortoise.expressions import F
 
 from core.cache import cache
 from core.config import config
-from database.enums import UserRole
+from database.enums import STAFF_ROLES, UserRole
 from database.models import Subscription, SubscriptionTracker, User
+from filters.callback.language import LanguageCallback
 from keyboard.inline.subscription_check import SubscriptionCheckKeyboard
 from utils.constants.subscription import CHECK_SUBSCRIPTIONS_CALLBACK, SUBSCRIPTION_OK_TTL
+from utils.helpers.language_choice import has_chosen_language
 
 logger = logging.getLogger(__name__)
 
 NOT_JOINED_STATUSES = (ChatMemberStatus.LEFT, ChatMemberStatus.KICKED)
+_LANGUAGE_CALLBACK_PREFIX = LanguageCallback.__prefix__ + ":"
+
+
+def subscription_prompt(not_joined: List[Subscription], check_callback: str = CHECK_SUBSCRIPTIONS_CALLBACK):
+    """Text and keyboard asking the user to join the channels in ``not_joined``."""
+    text = _("Please subscribe to our channels below, then you can use the bot.")
+    markup: InlineKeyboardMarkup = SubscriptionCheckKeyboard.make(subscriptions=not_joined, check_callback=check_callback)
+    return text, markup
+
+
+async def not_joined_subscriptions(bot: Bot, user_id: int) -> List[Subscription]:
+    """Active mandatory channels the user has not joined (checked with get_chat_member)."""
+    return await SubscriptionMiddleware._not_joined(bot=bot, user_id=user_id)
 
 
 class SubscriptionMiddleware(BaseMiddleware):
@@ -34,7 +49,7 @@ class SubscriptionMiddleware(BaseMiddleware):
             user is None
             or user.chat_type != ChatType.PRIVATE
             or user.telegram_id == config.telegram_id
-            or user.role == UserRole.ADMINISTRATOR
+            or user.role in STAFF_ROLES
         ):
             return await handler(event, data)
 
@@ -43,6 +58,17 @@ class SubscriptionMiddleware(BaseMiddleware):
         if message is None and callback is None:
             return await handler(event, data)
         if message is not None and message.chat.type != ChatType.PRIVATE:
+            return await handler(event, data)
+
+        # The language is chosen first, so the subscription request is shown in it:
+        # let the language buttons through, and /start while no language is chosen.
+        if callback is not None and (callback.data or "").startswith(_LANGUAGE_CALLBACK_PREFIX):
+            return await handler(event, data)
+        if (
+            message is not None
+            and (message.text or "").startswith("/start")
+            and not await has_chosen_language(user.telegram_id)
+        ):
             return await handler(event, data)
 
         ok_key = "subscription_ok:%d" % user.telegram_id
@@ -61,11 +87,7 @@ class SubscriptionMiddleware(BaseMiddleware):
             return await handler(event, data)
 
         check_callback = callback.data if callback and callback.data else CHECK_SUBSCRIPTIONS_CALLBACK
-        markup = SubscriptionCheckKeyboard.make(subscriptions=not_joined, check_callback=check_callback)
-        text = _(
-            "To use this bot you must be subscribed to the following channels and groups.\n"
-            "Please subscribe to each one and then tap the button below to verify."
-        )
+        text, markup = subscription_prompt(not_joined, check_callback)
 
         if callback is not None:
             await callback.answer(

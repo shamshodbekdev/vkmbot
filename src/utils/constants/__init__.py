@@ -1,4 +1,4 @@
-from .language import LANGUAGES
+from .language import LANGUAGES, LANGUAGE_PROMPT
 from .chat_type import CHAT_TYPES, ACTIVE_STATUSES
 from .broadcast import BROADCAST_DELAYS, BROADCAST_PROGRESS_ICONS, BROADCAST_PAGE_SIZE
 from .subscription import SUBSCRIPTION_STATUS, RELOAD_ICON
@@ -13,6 +13,7 @@ from .inline import INLINE_SEARCH_LIMIT
 
 __all__ = [
     "LANGUAGES",
+    "LANGUAGE_PROMPT",
     "CHAT_TYPES",
     "ACTIVE_STATUSES",
     "BROADCAST_DELAYS",

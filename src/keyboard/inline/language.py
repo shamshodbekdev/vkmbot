@@ -7,7 +7,7 @@ from utils.constants import LANGUAGES
 
 class LanguageKeyboard():
     @staticmethod
-    def make(current: Optional[str] = None, action: Optional[str] = None) -> InlineKeyboardMarkup:
+    def make(current: Optional[str] = None, action: Optional[str] = None, closable: bool = True) -> InlineKeyboardMarkup:
         builder = InlineKeyboardBuilder()
         for code, name, display in LANGUAGES:
             builder.row(
@@ -19,6 +19,10 @@ class LanguageKeyboard():
                     ).pack()
                 )
             )
+        if not closable:
+            # First visit: a language must be chosen, so there is no Close button.
+            builder.adjust(2)
+            return builder.as_markup()
         builder.row(
             InlineKeyboardButton(
                 text=_("Close"),
