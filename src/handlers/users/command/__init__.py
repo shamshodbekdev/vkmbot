@@ -7,6 +7,7 @@ from .new import router as new_router
 from .mood import router as mood_router
 from .settings import router as settings_router
 from .my import router as my_router
+from .round import router as round_router
 
 router = Router()
 router.include_router(language_router)
@@ -16,3 +17,4 @@ router.include_router(new_router)
 router.include_router(mood_router)
 router.include_router(settings_router)
 router.include_router(my_router)
+router.include_router(round_router)

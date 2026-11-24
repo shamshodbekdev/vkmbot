@@ -21,6 +21,7 @@ class Commands:
             BotCommand(command="new", description="NEW popular songs"),
             BotCommand(command="top", description="TOP popular tracks"),
             BotCommand(command="mood", description="Get a playlist based on your mood"),
+            BotCommand(command="round", description="Make a round video note from a video"),
             BotCommand(command="lang", description="Change language"),
             BotCommand(command="settings", description="Others settings"),
         ]
