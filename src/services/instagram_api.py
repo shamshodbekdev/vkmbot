@@ -13,7 +13,17 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from schemas.instagram import InstagramMediaItemSchema, InstagramResponseSchema
-from services.media_downloader import base_options, downloaded_path, extract, fits_upload_limit, new_job_dir
+from services.media_downloader import (
+    FileTooLargeError,
+    base_options,
+    discard_dir,
+    downloaded_path,
+    extract,
+    fits_upload_limit,
+    is_too_large,
+    new_job_dir,
+    size_aware_format,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -33,12 +43,14 @@ class InstagramAPI:
         options.update(
             noplaylist=False,  # carousels are playlists
             outtmpl="%(playlist_index|0)03d-%(id)s.%(ext)s",
-            # Telegram-friendly MP4 (H.264 + AAC) when available.
-            format="bv*[ext=mp4][vcodec^=avc]+ba[ext=m4a]/b[ext=mp4]/bv*+ba/b",
+            # Best version that really fits Telegram's limit (Instagram reports no
+            # sizes, so they are checked with HEAD requests); H.264 preferred.
+            format=size_aware_format(),
             merge_output_format="mp4",
         )
         info = await extract(url, options, download=True)
         if not info:
+            discard_dir(job_dir)
             logger.warning(
                 "Instagram media unavailable for %s (photo-only, private, or login required; "
                 "add cookies/instagram.txt to enable logged-in downloads)", url,
@@ -46,10 +58,16 @@ class InstagramAPI:
             return None
 
         medias: List[InstagramMediaItemSchema] = []
+        too_large = 0
         for entry in _entries(info):
             path: Optional[Path] = downloaded_path(entry)
             if not path or not fits_upload_limit(path):
+                too_large += bool(is_too_large(entry) or path)
                 continue
             kind = "image" if path.suffix.lower() in _IMAGE_EXTENSIONS else "video"
             medias.append(InstagramMediaItemSchema(type=kind, url=str(path)))
+        if not medias:
+            discard_dir(job_dir)
+            if too_large:
+                raise FileTooLargeError(url)
         return InstagramResponseSchema(medias=medias)

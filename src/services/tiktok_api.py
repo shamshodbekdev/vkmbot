@@ -8,7 +8,18 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from schemas.tiktok import TikTokSchema
-from services.media_downloader import MEDIA_TMP_DIR, base_options, downloaded_path, extract, fits_upload_limit, new_job_dir
+from services.media_downloader import (
+    MEDIA_TMP_DIR,
+    FileTooLargeError,
+    base_options,
+    discard_dir,
+    downloaded_path,
+    extract,
+    fits_upload_limit,
+    is_too_large,
+    new_job_dir,
+    size_aware_format,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -59,12 +70,14 @@ class TikTokAPI:
     async def download(cls, url: str) -> Optional[TikTokSchema]:
         job_dir = new_job_dir()
         options = base_options(job_dir, "tiktok")
-        options.update(format=_FORMAT)
+        # Same preference as _FORMAT (no watermark, H.264 first) but size-aware.
+        options.update(format=size_aware_format(exclude_note="watermark"))
         info = await extract(url, options, download=True)
-        if not info:
-            return None
-        path: Optional[Path] = downloaded_path(info)
-        if not path or not fits_upload_limit(path):
+        path: Optional[Path] = downloaded_path(info) if info else None
+        if not info or not path or not fits_upload_limit(path):
             logger.warning("TikTok %s: no usable video file", url)
+            discard_dir(job_dir)
+            if is_too_large(info) or path:
+                raise FileTooLargeError(url)
             return None
         return _to_schema(info, play=str(path), size=path.stat().st_size)
