@@ -1411,3 +1411,157 @@ msgstr "⏳ Downloading... %(percent)s%%"
 
 msgid "📤 Sending the video..."
 msgstr "📤 Sending the video..."
+
+# YouTube Music mood and genre titles
+msgid "Autumn"
+msgstr "Autumn"
+
+msgid "Chill"
+msgstr "Chill"
+
+msgid "Commute"
+msgstr "Commute"
+
+msgid "Energize"
+msgstr "Energize"
+
+msgid "Feel good"
+msgstr "Feel good"
+
+msgid "Focus"
+msgstr "Focus"
+
+msgid "Gaming"
+msgstr "Gaming"
+
+msgid "Hanukkah"
+msgstr "Hanukkah"
+
+msgid "Party"
+msgstr "Party"
+
+msgid "Romance"
+msgstr "Romance"
+
+msgid "Sad"
+msgstr "Sad"
+
+msgid "Sleep"
+msgstr "Sleep"
+
+msgid "Summer"
+msgstr "Summer"
+
+msgid "Winter"
+msgstr "Winter"
+
+msgid "Workout"
+msgstr "Workout"
+
+msgid "Spring"
+msgstr "Spring"
+
+msgid "Christmas"
+msgstr "Christmas"
+
+msgid "Holiday"
+msgstr "Holiday"
+
+msgid "Halloween"
+msgstr "Halloween"
+
+msgid "Valentine's Day"
+msgstr "Valentine's Day"
+
+msgid "New Year's Eve"
+msgstr "New Year's Eve"
+
+msgid "Ramadan"
+msgstr "Ramadan"
+
+msgid "Travel"
+msgstr "Travel"
+
+msgid "Love"
+msgstr "Love"
+
+msgid "Throwback"
+msgstr "Throwback"
+
+msgid "African"
+msgstr "African"
+
+msgid "Arabic"
+msgstr "Arabic"
+
+msgid "Blues"
+msgstr "Blues"
+
+msgid "Bollywood & Indian"
+msgstr "Bollywood & Indian"
+
+msgid "Classical"
+msgstr "Classical"
+
+msgid "Country & Americana"
+msgstr "Country & Americana"
+
+msgid "Dance & electronic"
+msgstr "Dance & electronic"
+
+msgid "Decades"
+msgstr "Decades"
+
+msgid "Family"
+msgstr "Family"
+
+msgid "Folk & acoustic"
+msgstr "Folk & acoustic"
+
+msgid "German hip-hop"
+msgstr "German hip-hop"
+
+msgid "German pop"
+msgstr "German pop"
+
+msgid "Hip-hop"
+msgstr "Hip-hop"
+
+msgid "Indie & alternative"
+msgstr "Indie & alternative"
+
+msgid "J-Pop"
+msgstr "J-Pop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "K-Pop"
+msgstr "K-Pop"
+
+msgid "Latin"
+msgstr "Latin"
+
+msgid "Mandopop & cantopop"
+msgstr "Mandopop & cantopop"
+
+msgid "Metal"
+msgstr "Metal"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B & soul"
+msgstr "R&B & soul"
+
+msgid "Reggae & caribbean"
+msgstr "Reggae & caribbean"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Schlager"
+msgstr "Schlager"
+
+msgid "Soundtracks & musicals"
+msgstr "Soundtracks & musicals"

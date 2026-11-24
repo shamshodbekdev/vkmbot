@@ -8,6 +8,7 @@ from filters.callback.close import CloseCallback
 from schemas.mood import MoodItemSchema, MoodPlaylistItemSchema
 from schemas.playlist import PlaylistTrackSchema
 from utils.constants import MOOD_PLAYLIST_PAGE_SIZE, MOOD_PAGE_SIZE
+from utils.constants.mood import mood_title
 
 
 class MoodKeyboard:
@@ -22,7 +23,7 @@ class MoodKeyboard:
         for i in range(start, min(end, total), 2):
             builder.row(*[
                 InlineKeyboardButton(
-                    text=item.title,
+                    text=mood_title(item.title),
                     callback_data=MoodPlaylistsCallback(
                         params=item.params,
                         page=0,

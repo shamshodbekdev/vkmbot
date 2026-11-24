@@ -1410,3 +1410,157 @@ msgstr "⏳ Юкланмоқда... %(percent)s%%"
 
 msgid "📤 Sending the video..."
 msgstr "📤 Видео юборилмоқда..."
+
+# YouTube Music mood and genre titles
+msgid "Autumn"
+msgstr "Куз"
+
+msgid "Chill"
+msgstr "Дам олиш"
+
+msgid "Commute"
+msgstr "Йўлда"
+
+msgid "Energize"
+msgstr "Қувват"
+
+msgid "Feel good"
+msgstr "Яхши кайфият"
+
+msgid "Focus"
+msgstr "Диққат"
+
+msgid "Gaming"
+msgstr "Ўйин"
+
+msgid "Hanukkah"
+msgstr "Ханука"
+
+msgid "Party"
+msgstr "Зиёфат"
+
+msgid "Romance"
+msgstr "Романтика"
+
+msgid "Sad"
+msgstr "Ғамгин"
+
+msgid "Sleep"
+msgstr "Уйқу"
+
+msgid "Summer"
+msgstr "Ёз"
+
+msgid "Winter"
+msgstr "Қиш"
+
+msgid "Workout"
+msgstr "Машғулот"
+
+msgid "Spring"
+msgstr "Баҳор"
+
+msgid "Christmas"
+msgstr "Рождество"
+
+msgid "Holiday"
+msgstr "Байрам"
+
+msgid "Halloween"
+msgstr "Хеллоуин"
+
+msgid "Valentine's Day"
+msgstr "Севишганлар куни"
+
+msgid "New Year's Eve"
+msgstr "Янги йил"
+
+msgid "Ramadan"
+msgstr "Рамазон"
+
+msgid "Travel"
+msgstr "Саёҳат"
+
+msgid "Love"
+msgstr "Севги"
+
+msgid "Throwback"
+msgstr "Эски қўшиқлар"
+
+msgid "African"
+msgstr "Африка"
+
+msgid "Arabic"
+msgstr "Арабча"
+
+msgid "Blues"
+msgstr "Блюз"
+
+msgid "Bollywood & Indian"
+msgstr "Болливуд ва ҳинд"
+
+msgid "Classical"
+msgstr "Классик"
+
+msgid "Country & Americana"
+msgstr "Кантри ва американа"
+
+msgid "Dance & electronic"
+msgstr "Рақс ва электрон"
+
+msgid "Decades"
+msgstr "Ўн йилликлар"
+
+msgid "Family"
+msgstr "Оилавий"
+
+msgid "Folk & acoustic"
+msgstr "Фолк ва акустик"
+
+msgid "German hip-hop"
+msgstr "Немис хип-хопи"
+
+msgid "German pop"
+msgstr "Немис попи"
+
+msgid "Hip-hop"
+msgstr "Хип-хоп"
+
+msgid "Indie & alternative"
+msgstr "Инди ва альтернатив"
+
+msgid "J-Pop"
+msgstr "J-Pop"
+
+msgid "Jazz"
+msgstr "Жаз"
+
+msgid "K-Pop"
+msgstr "K-Pop"
+
+msgid "Latin"
+msgstr "Лотин Америкаси"
+
+msgid "Mandopop & cantopop"
+msgstr "Мандопоп ва кантопоп"
+
+msgid "Metal"
+msgstr "Метал"
+
+msgid "Pop"
+msgstr "Поп"
+
+msgid "R&B & soul"
+msgstr "R&B ва соул"
+
+msgid "Reggae & caribbean"
+msgstr "Регги ва Кариб"
+
+msgid "Rock"
+msgstr "Рок"
+
+msgid "Schlager"
+msgstr "Шлягер"
+
+msgid "Soundtracks & musicals"
+msgstr "Саундтреклар ва мюзикллар"

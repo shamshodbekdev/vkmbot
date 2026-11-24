@@ -1411,3 +1411,157 @@ msgstr "⏳ Загрузка... %(percent)s%%"
 
 msgid "📤 Sending the video..."
 msgstr "📤 Отправляю видео..."
+
+# YouTube Music mood and genre titles
+msgid "Autumn"
+msgstr "Осень"
+
+msgid "Chill"
+msgstr "Расслабление"
+
+msgid "Commute"
+msgstr "В дороге"
+
+msgid "Energize"
+msgstr "Энергия"
+
+msgid "Feel good"
+msgstr "Хорошее настроение"
+
+msgid "Focus"
+msgstr "Фокус"
+
+msgid "Gaming"
+msgstr "Игры"
+
+msgid "Hanukkah"
+msgstr "Ханука"
+
+msgid "Party"
+msgstr "Вечеринка"
+
+msgid "Romance"
+msgstr "Романтика"
+
+msgid "Sad"
+msgstr "Грусть"
+
+msgid "Sleep"
+msgstr "Сон"
+
+msgid "Summer"
+msgstr "Лето"
+
+msgid "Winter"
+msgstr "Зима"
+
+msgid "Workout"
+msgstr "Тренировка"
+
+msgid "Spring"
+msgstr "Весна"
+
+msgid "Christmas"
+msgstr "Рождество"
+
+msgid "Holiday"
+msgstr "Праздники"
+
+msgid "Halloween"
+msgstr "Хэллоуин"
+
+msgid "Valentine's Day"
+msgstr "День святого Валентина"
+
+msgid "New Year's Eve"
+msgstr "Новый год"
+
+msgid "Ramadan"
+msgstr "Рамадан"
+
+msgid "Travel"
+msgstr "Путешествия"
+
+msgid "Love"
+msgstr "Любовь"
+
+msgid "Throwback"
+msgstr "Ностальгия"
+
+msgid "African"
+msgstr "Африканская"
+
+msgid "Arabic"
+msgstr "Арабская"
+
+msgid "Blues"
+msgstr "Блюз"
+
+msgid "Bollywood & Indian"
+msgstr "Болливуд и индийская"
+
+msgid "Classical"
+msgstr "Классическая"
+
+msgid "Country & Americana"
+msgstr "Кантри и американа"
+
+msgid "Dance & electronic"
+msgstr "Танцевальная и электронная"
+
+msgid "Decades"
+msgstr "Десятилетия"
+
+msgid "Family"
+msgstr "Для всей семьи"
+
+msgid "Folk & acoustic"
+msgstr "Фолк и акустика"
+
+msgid "German hip-hop"
+msgstr "Немецкий хип-хоп"
+
+msgid "German pop"
+msgstr "Немецкий поп"
+
+msgid "Hip-hop"
+msgstr "Хип-хоп"
+
+msgid "Indie & alternative"
+msgstr "Инди и альтернатива"
+
+msgid "J-Pop"
+msgstr "J-Pop"
+
+msgid "Jazz"
+msgstr "Джаз"
+
+msgid "K-Pop"
+msgstr "K-Pop"
+
+msgid "Latin"
+msgstr "Латиноамериканская"
+
+msgid "Mandopop & cantopop"
+msgstr "Мандопоп и кантопоп"
+
+msgid "Metal"
+msgstr "Метал"
+
+msgid "Pop"
+msgstr "Поп"
+
+msgid "R&B & soul"
+msgstr "R&B и соул"
+
+msgid "Reggae & caribbean"
+msgstr "Регги и карибская"
+
+msgid "Rock"
+msgstr "Рок"
+
+msgid "Schlager"
+msgstr "Шлягер"
+
+msgid "Soundtracks & musicals"
+msgstr "Саундтреки и мюзиклы"
