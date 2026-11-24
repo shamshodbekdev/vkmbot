@@ -1564,3 +1564,27 @@ msgstr "Шлягер"
 
 msgid "Soundtracks & musicals"
 msgstr "Саундтреклар ва мюзикллар"
+
+# /round (video notes)
+msgid "⏳ Now send the video you want to make round:"
+msgstr "⏳ Энди думалоқ қилиш керак бўлган видеони юборинг:"
+
+msgid "❌ Could not convert this video. Please send another one."
+msgstr "❌ Бу видеони думалоқ қилиб бўлмади. Илтимос, бошқа видео юборинг."
+
+#, python-format
+msgid "✂️ The video was longer than %(seconds)s seconds, so only the first %(seconds)s seconds were used."
+msgstr "✂️ Видео %(seconds)s сониядан узун эди, шунинг учун фақат биринчи %(seconds)s сонияси олинди."
+
+msgid "🎥 /round — turn a video into a round video (Telegram Video Note)\n\nHow does it work?\n\n1) Convert a new video\n• First type /round\n• Then send the video\n✅ The bot turns the video into a round one and sends it back.\n\n2) Convert a video already in the chat\n• Reply to any video in the chat with the bot\n• Type /round in the reply\n✅ The bot turns that video into a round one and sends it back.\n\nNote:\n• Works only with video files.\n• Very large or very long videos may be cut or rejected.\n\n⏳ Now send the video you want to make round:"
+msgstr "🎥 /round — видеони думалоқ (Telegram Video Note) форматга айлантириш\n\nҚандай ишлайди?\n\n1) Янги видео юбориб айлантириш\n• Аввал /round деб ёзинг\n• Кейин видеони юборинг\n✅ Бот видеони думалоқ форматга айлантириб юборади.\n\n2) Ботдаги мавжуд видеони айлантириш\n• Ботда турган исталган видеога Reply қилинг\n• Reply ичида /round деб ёзинг\n✅ Бот ўша видеони думалоқ форматга айлантириб юборади.\n\nЭслатма:\n• Фақат видео файллар учун ишлайди.\n• Жуда катта ёки жуда узун видеолар кесилиши ёки рад этилиши мумкин.\n\n⏳ Энди думалоқ қилиш керак бўлган видеони юборинг:"
+
+#, python-format
+msgid "⌛️ No video arrived within %(seconds)s seconds. /round was cancelled."
+msgstr "⌛️ %(seconds)s сония ичида видео келмади. /round бекор қилинди."
+
+msgid "Converting the round video to a rectangular one..."
+msgstr "Думалоқ видео тўртбурчак форматга айлантирилмоқда..."
+
+msgid "✅ The video was sent in rectangular format."
+msgstr "✅ Видео тўртбурчак форматда юборилди."

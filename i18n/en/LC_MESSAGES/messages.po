@@ -1565,3 +1565,27 @@ msgstr "Schlager"
 
 msgid "Soundtracks & musicals"
 msgstr "Soundtracks & musicals"
+
+# /round (video notes)
+msgid "⏳ Now send the video you want to make round:"
+msgstr "⏳ Now send the video you want to make round:"
+
+msgid "❌ Could not convert this video. Please send another one."
+msgstr "❌ Could not convert this video. Please send another one."
+
+#, python-format
+msgid "✂️ The video was longer than %(seconds)s seconds, so only the first %(seconds)s seconds were used."
+msgstr "✂️ The video was longer than %(seconds)s seconds, so only the first %(seconds)s seconds were used."
+
+msgid "🎥 /round — turn a video into a round video (Telegram Video Note)\n\nHow does it work?\n\n1) Convert a new video\n• First type /round\n• Then send the video\n✅ The bot turns the video into a round one and sends it back.\n\n2) Convert a video already in the chat\n• Reply to any video in the chat with the bot\n• Type /round in the reply\n✅ The bot turns that video into a round one and sends it back.\n\nNote:\n• Works only with video files.\n• Very large or very long videos may be cut or rejected.\n\n⏳ Now send the video you want to make round:"
+msgstr "🎥 /round — turn a video into a round video (Telegram Video Note)\n\nHow does it work?\n\n1) Convert a new video\n• First type /round\n• Then send the video\n✅ The bot turns the video into a round one and sends it back.\n\n2) Convert a video already in the chat\n• Reply to any video in the chat with the bot\n• Type /round in the reply\n✅ The bot turns that video into a round one and sends it back.\n\nNote:\n• Works only with video files.\n• Very large or very long videos may be cut or rejected.\n\n⏳ Now send the video you want to make round:"
+
+#, python-format
+msgid "⌛️ No video arrived within %(seconds)s seconds. /round was cancelled."
+msgstr "⌛️ No video arrived within %(seconds)s seconds. /round was cancelled."
+
+msgid "Converting the round video to a rectangular one..."
+msgstr "Converting the round video to a rectangular one..."
+
+msgid "✅ The video was sent in rectangular format."
+msgstr "✅ The video was sent in rectangular format."
