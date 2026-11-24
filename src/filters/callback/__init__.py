@@ -17,6 +17,8 @@ from .charts import ChartsCallback
 from .transcription_language import TranscriptionLanguageCallback
 from .settings import SettingsCallback
 from .audio_playlist import AudioPlaylistCallback
+from .audio_effect import AudioEffectCallback
+from .new_songs import NewSongsCallback
 from .playlist import PlaylistCallback
 from .video_recognize import VideoRecognizeCallback
 from .suggestion import SuggestionCallback
@@ -42,6 +44,8 @@ __all__ = [
     "TranscriptionLanguageCallback",
     "SettingsCallback",
     "AudioPlaylistCallback",
+    "AudioEffectCallback",
+    "NewSongsCallback",
     "PlaylistCallback",
     "VideoRecognizeCallback",
     "SuggestionCallback",
