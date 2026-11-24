@@ -2,17 +2,27 @@ import logging
 from typing import Any, Awaitable, Callable, Dict, Optional
 
 from aiogram import BaseMiddleware
+from aiogram.enums import ChatType, MessageEntityType
 from aiogram.types import Update
 from aiogram.types import User as TelegramUser
 from aiogram.utils.i18n import gettext as _
 
 from core.cache import cache
 from core.config import config
-from database.enums import UserRole
+from database.enums import STAFF_ROLES, UserRole
 from database.models import User
 from utils.constants.throttle import THROTTLE_LIMIT, THROTTLE_WINDOW
 
 logger = logging.getLogger(__name__)
+
+
+def _bot_relevant(message) -> bool:
+    """A group message the bot may act on: a command or anything with a link."""
+    text = message.text or message.caption or ""
+    if text.startswith("/"):
+        return True
+    entities = (message.entities or []) + (message.caption_entities or [])
+    return any(e.type in (MessageEntityType.URL, MessageEntityType.TEXT_LINK) for e in entities)
 
 
 class ThrottlerMiddleware(BaseMiddleware):
@@ -44,8 +54,14 @@ class ThrottlerMiddleware(BaseMiddleware):
             # Anonymous group admins / linked channels share one bot id across all chats.
             or from_user.is_bot
             or from_user.id == config.telegram_id
-            or (user is not None and user.role == UserRole.ADMINISTRATOR and user.telegram_id == from_user.id)
+            or (user is not None and user.role in STAFF_ROLES and user.telegram_id == from_user.id)
         ):
+            return await handler(event, data)
+
+        # In groups the bot sees every message (privacy mode off) but acts only on
+        # links and commands: ordinary chatter must not count against members.
+        in_group = event.message is not None and event.message.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP)
+        if in_group and not _bot_relevant(event.message):
             return await handler(event, data)
 
         key = "throttle:%d" % from_user.id
@@ -60,7 +76,7 @@ class ThrottlerMiddleware(BaseMiddleware):
         if hits <= self.limit:
             return await handler(event, data)
 
-        if hits == self.limit + 1:
+        if hits == self.limit + 1 and not in_group:  # never warn publicly in a group
             text = _("Too many requests. Please slow down.")
             if event.callback_query:
                 await event.callback_query.answer(text=text, show_alert=True)
