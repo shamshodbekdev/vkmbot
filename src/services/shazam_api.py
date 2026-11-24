@@ -12,7 +12,7 @@ from typing import BinaryIO, Optional, Union
 from shazamio import Shazam as ShazamClient
 
 from schemas.shazam import ShazamSchema
-from services.media_downloader import MEDIA_TMP_DIR, run_ffmpeg
+from services.media_downloader import MEDIA_TMP_DIR, read_bytes, run_ffmpeg
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,17 @@ async def to_wav(data: bytes, seconds: Optional[int] = None) -> Optional[bytes]:
             args += ["-t", str(seconds)]
         if await run_ffmpeg(*args, tmp.name, stdin=data) is None:
             return None
-        return Path(tmp.name).read_bytes() or None
+        return await read_bytes(Path(tmp.name)) or None
+
+
+async def wav_from_path(path: str, seconds: int) -> Optional[bytes]:
+    """Like :func:`to_wav`, but ffmpeg reads a file on disk and decodes only the
+    first ``seconds``: a 2 GB video never has to be loaded into memory."""
+    MEDIA_TMP_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(suffix=".wav", dir=MEDIA_TMP_DIR) as tmp:
+        if await run_ffmpeg("-y", "-t", str(seconds), "-i", path, "-vn", "-ac", "1", "-ar", "16000", tmp.name) is None:
+            return None
+        return await read_bytes(Path(tmp.name)) or None
 
 
 class ShazamAPI:

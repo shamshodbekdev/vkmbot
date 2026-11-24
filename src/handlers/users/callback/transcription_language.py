@@ -12,7 +12,8 @@ from services.transcription import Transcription
 from services.youtube.search import YouTubeSearch
 from states import TranscriptionState
 from utils.constants import LOCALES, TRANSRIPTION_RESULT_COUNT
-from utils.helpers import download_file_bytes, safe_delete
+from services.transcription_api import MAX_AUDIO_SECONDS as TRANSCRIPTION_MAX_SECONDS
+from utils.helpers import download_audio_sample, safe_delete
 
 router = Router()
 logger = logging.getLogger(__name__)
@@ -41,8 +42,8 @@ async def transcription_language_callback_handler(
     await safe_delete(callback.message)
     processing = await callback.message.answer(text=_("Processing..."))
     try:
-        audio_bytes = await download_file_bytes(bot, file_id)
-        result = await Transcription.transcribe(
+        audio_bytes = await download_audio_sample(bot, file_id, TRANSCRIPTION_MAX_SECONDS)
+        result = None if not audio_bytes else await Transcription.transcribe(
             file=audio_bytes,
             filename=filename,
             language=callback_data.locale,

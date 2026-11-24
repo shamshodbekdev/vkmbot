@@ -5,19 +5,23 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from aiogram.utils.i18n import gettext as _
 
+from filters.common import OnlyPrivate
+
 from keyboard.inline import TranscriptionLanguageKeyboard
 from states import TranscriptionState
-from utils.constants import MAX_FILE_SIZE, MIN_DURATION
+from utils.constants import MAX_FILE_SIZE, MAX_FILE_SIZE_MB, MIN_DURATION
 from utils.helpers import recognize_media, safe_delete
 
 router = Router()
 logger = logging.getLogger(__name__)
 
 
-@router.message(F.voice)
+# Private chats only: in groups every posted voice would be analysed and answered.
+# (In groups the "recognize" button under videos the bot sends still works.)
+@router.message(F.voice, OnlyPrivate())
 async def voice_recognize_handler(message: Message, bot: Bot, state: FSMContext) -> None:
     if message.voice.file_size and message.voice.file_size > MAX_FILE_SIZE:
-        await message.answer(text=_("File is too large. Maximum size is 10MB."))
+        await message.answer(text=_("File is too large. Maximum size is %(limit)sMB.") % dict(limit=MAX_FILE_SIZE_MB))
         return
 
     if message.voice.duration is not None and message.voice.duration < MIN_DURATION:

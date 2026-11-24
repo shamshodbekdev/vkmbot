@@ -9,7 +9,7 @@ from services.shazam.recognize import Shazam
 from services.youtube.search import YouTubeSearch
 from filters.callback.youtube_download import YoutubeDownloadCallback
 from utils.constants import RECOGNITION_SEARCH_LIMIT
-from utils.helpers.telegram import download_file_bytes
+from utils.helpers.telegram import download_audio_sample
 
 
 @dataclass
@@ -24,8 +24,13 @@ async def recognize_media(
     file_id: str,
     filename: str,
 ) -> Optional[RecognitionResult]:
-    audio_bytes = await download_file_bytes(bot, file_id)
+    from services.shazam_api import MAX_SAMPLE_SECONDS
 
+    sample = await download_audio_sample(bot, file_id, MAX_SAMPLE_SECONDS)
+    return await recognize_bytes(sample, filename) if sample else None
+
+
+async def recognize_bytes(audio_bytes: bytes, filename: str = "audio.wav") -> Optional[RecognitionResult]:
     result = await Shazam.recognize(file=audio_bytes, filename=filename)
 
     if not result or not result.matches or not result.track:

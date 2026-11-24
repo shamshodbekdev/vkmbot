@@ -8,8 +8,9 @@ from aiogram.utils.i18n import gettext as _
 
 from filters.callback import VideoRecognizeCallback
 from keyboard.inline import VideoRecognizeKeyboard
-from utils.helpers import recognize_media, safe_delete
-from utils.constants import MAX_FILE_SIZE, MIN_DURATION
+from services.media_downloader import audio_sample_from_source, video_source
+from utils.helpers import recognize_bytes, recognize_media, safe_delete
+from utils.constants import MAX_FILE_SIZE, MAX_FILE_SIZE_MB, MIN_DURATION
 
 router = Router()
 logger = logging.getLogger(__name__)
@@ -29,9 +30,16 @@ async def video_recognize_callback_handler(
     with suppress(TelegramBadRequest):
         await callback.message.edit_reply_markup(reply_markup=VideoRecognizeKeyboard.close_only())
 
-    if callback.message.video.file_size and callback.message.video.file_size > MAX_FILE_SIZE:
-        await callback.message.answer(text=_("File is too large. Maximum size is 10MB."))
-        return
+    # Telegram does not let bots download files above 20 MB. For videos the bot
+    # sent itself, a short audio sample is taken from the original link instead.
+    source = None
+    if video.file_size and video.file_size > MAX_FILE_SIZE:
+        source = await video_source(video.file_unique_id)
+        if not source:
+            await callback.message.answer(
+                text=_("File is too large. Maximum size is %(limit)sMB.") % dict(limit=MAX_FILE_SIZE_MB),
+            )
+            return
 
     if callback.message.video.duration is not None and callback.message.video.duration < MIN_DURATION:
         await callback.message.answer(text=_("Video is too short. Minimum duration is 2 seconds."))
@@ -39,11 +47,15 @@ async def video_recognize_callback_handler(
 
     processing = await callback.message.reply(text=_("Processing..."))
     try:
-        result = await recognize_media(
-            bot=bot,
-            file_id=callback.message.video.file_id,
-            filename="video.mp4",
-        )
+        if source:
+            sample = await audio_sample_from_source(source)
+            result = await recognize_bytes(sample, "sample.wav") if sample else None
+        else:
+            result = await recognize_media(
+                bot=bot,
+                file_id=callback.message.video.file_id,
+                filename="video.mp4",
+            )
     except Exception:
         logger.exception("Video recognition failed")
         result = None
