@@ -647,7 +647,7 @@ msgstr ""
 #: src/handlers/users/command/start.py
 #: src/handlers/users/callback/check_subscriptions.py
 msgid "Hello, world!"
-msgstr "🔥 Ассалому алайкум. @Vkmbot_musikbot га Хуш келибсиз. Бот орқали қуйидагиларни юклаб олишингиз мумкин:\n\n• Instagram - пост ва IGTV + аудио билан;\n• TikTok - сув белгисиз видео + аудио билан;\n• YouTube - видеолар ва shorts + аудио билан;\n• Snapchat - сув белгисиз видео + аудио билан;\n• Likee - сув белгисиз видео + аудио билан;\n• Pinterest - сув белгисиз видео ва расмлар + аудио билан;\n\nShazam функция:\n• Қўшиқ номи ёки ижрочи исми\n• Қўшиқ матни\n• Овозли хабар\n• Видео\n• Аудио\n• Видео хабар\n\n🚀 Юклаб олмоқчи бўлган видеога ҳаволани юборинг!"
+msgstr "🔥 Ассалому алайкум. @Vkm_Uzbot га Хуш келибсиз. Бот орқали қуйидагиларни юклаб олишингиз мумкин:\n\n• Instagram - пост ва IGTV + аудио билан;\n• TikTok - сув белгисиз видео + аудио билан;\n• YouTube - видеолар ва shorts + аудио билан;\n• Snapchat - сув белгисиз видео + аудио билан;\n• Pinterest - сув белгисиз видео ва расмлар;\n\nShazam функция:\n• Қўшиқ номи ёки ижрочи исми\n• Қўшиқ матни\n• Овозли хабар\n• Видео\n• Аудио\n• Видео хабар\n\n🚀 Юклаб олмоқчи бўлган видеога ҳаволани юборинг!\n😎 Бот гуруҳларда ҳам ишлай олади!"
 
 #: src/keyboard/inline/broadcast_history.py
 msgid "Broadcast history"
@@ -912,11 +912,11 @@ msgstr "Forward"
 
 #: src/handlers/users/message/_recognition.py
 msgid "Processing..."
-msgstr "⏳ Қайта ишланмоқда..."
+msgstr "⏳"
 
 #: src/handlers/users/message/_recognition.py
-msgid "File is too large. Maximum size is 10MB."
-msgstr "‼️ <b>Файл жуда катта.</b> Максимал ҳажм 10MB."
+msgid "File is too large. Maximum size is %(limit)sMB."
+msgstr "‼️ <b>Файл жуда катта.</b> Максимал ҳажм %(limit)sMB."
 
 #: src/handlers/users/message/_recognition.py
 msgid "Audio is too short. Minimum duration is 2 seconds."
@@ -1138,3 +1138,275 @@ msgstr "Супергуруҳ"
 #: src/handlers/users/message/youtube.py
 msgid "Could not fetch the video."
 msgstr "Видеони юклаб бўлмади."
+
+#: src/keyboard/inline/audio_download.py
+msgid "🎧 8D"
+msgstr "🎧 8D"
+
+#: src/keyboard/inline/audio_download.py
+msgid "🏛 Concert Hall"
+msgstr "🏛 Концерт"
+
+#: src/keyboard/inline/audio_download.py
+msgid "🐢 Slowed"
+msgstr "🐢 Секин"
+
+#: src/middlewares/download_limit.py
+msgid "⏳ You already have %(count)s downloads in progress. Please wait until they finish."
+msgstr "⏳ Сизда ҳозир %(count)s та юклаб олиш жараёни бор. Илтимос, улар тугашини кутинг."
+
+#: src/handlers/users/callback/audio_effect.py
+msgid "Applying the effect..."
+msgstr "Эффект қўлланилмоқда..."
+
+#: src/handlers/users/callback/audio_effect.py
+msgid "Could not apply the effect."
+msgstr "Эффектни қўллаб бўлмади."
+
+#: src/keyboard/inline/youtube_link.py
+msgid "📼 Video"
+msgstr "📼 Видео"
+
+#: src/keyboard/inline/youtube_link.py
+msgid "🎧 Audio"
+msgstr "🎧 Аудио"
+
+#: src/handlers/users/callback/first_page.py
+msgid "You are on the first page"
+msgstr "Сиз биринчи саҳифада турибсиз"
+
+#: src/keyboard/inline/audio_download.py
+msgid "🔗 Add to group"
+msgstr "🔗 Гуруҳга қўшиш"
+
+#: src/middlewares/subscription.py
+msgid "Please subscribe to our channels below, then you can use the bot."
+msgstr "Илтимос, қуйидаги каналларимизга обуна бўлинг, кейин ботни ишлатишингиз мумкин."
+
+#: src/keyboard/inline/subscription_check.py
+msgid "➕ Subscribe"
+msgstr "➕ Обуна бўлиш"
+
+#: src/keyboard/inline/subscription_check.py
+msgid "✅ Confirm"
+msgstr "✅ Тасдиқлаш"
+
+msgid "Role updated."
+msgstr "Рол янгиланди."
+
+msgid "User has been made a moderator."
+msgstr "Фойдаланувчи модератор қилинди."
+
+msgid "⛔ You cannot block or ban this person."
+msgstr "⛔ Бу одамни блоклай олмайсиз."
+
+msgid "Tashkent time"
+msgstr "Тошкент вақти"
+
+msgid "<b>📅 Schedule</b>\n\nSend the date and time in this format:\n<code>DD.MM.YYYY HH:MM</code>  (Tashkent time)\n\nExample: <code>%(example)s</code>"
+msgstr "<b>📅 Режалаштириш</b>\n\nСана ва вақтни шу форматда юборинг:\n<code>КК.ОО.ЙЙЙЙ СС:ДД</code>  (Тошкент вақти)\n\nМисол: <code>%(example)s</code>"
+
+msgid "❌ Wrong format. Send it like <code>%(example)s</code>."
+msgstr "❌ Нотўғри формат. Мана бундай юборинг: <code>%(example)s</code>."
+
+msgid "❌ This time has already passed. Send a time in the future."
+msgstr "❌ Бу вақт аллақачон ўтиб кетган. Келажакдаги вақтни юборинг."
+
+msgid "❌ You can schedule at most %(days)s days ahead."
+msgstr "❌ Кўпи билан %(days)s кун олдинга режалаштириш мумкин."
+
+msgid "🧪 Test message sent to you. Check it, then confirm or cancel."
+msgstr "🧪 Синов хабари сизга юборилди. Текшириб, тасдиқланг ёки бекор қилинг."
+
+msgid "❌ Could not send the test message."
+msgstr "❌ Синов хабарини юбориб бўлмади."
+
+msgid "Which role should <b>%(name)s</b> get?"
+msgstr "<b>%(name)s</b> қайси ролни олсин?"
+
+msgid "Nobody found for <b>%(query)s</b>. Send a Telegram ID or another name."
+msgstr "<b>%(query)s</b> бўйича ҳеч ким топилмади. Telegram ID ёки бошқа исм юборинг."
+
+msgid "<b>🔎 Found %(count)s</b> for <b>%(query)s</b>. Choose a person:"
+msgstr "<b>🔎 %(query)s</b> бўйича <b>%(count)s</b> та топилди. Одамни танланг:"
+
+msgid "Send a Telegram ID (numbers) or at least 2 letters of a name."
+msgstr "Telegram ID (рақамлар) ёки исмнинг камида 2 ҳарфини юборинг."
+
+msgid "<b>🩺 System status</b>\n\n%(db)s Database  —  <b>%(db_ms).0f ms</b>\n%(redis)s Redis  —  <b>%(redis_ms).0f ms</b>\n%(tg)s Telegram API  —  <b>%(tg_ms).0f ms</b>\n%(sched)s Scheduler  —  <b>%(jobs)s</b> jobs\n%(ffmpeg)s ffmpeg\n\n⬇️ Active downloads  —  <b>%(downloads)s</b> / %(limit)s  (⏳ %(queued)s)\n🧠 Bot memory  —  <b>%(memory).0f MB</b>\n💾 Free disk  —  <b>%(disk_free).1f GB</b> / %(disk_total).0f GB\n⏱ Uptime  —  <b>%(uptime)s</b>\n📦 yt-dlp  —  <b>%(ytdlp)s</b>\n\n<i>%(time)s</i>"
+msgstr "<b>🩺 Тизим ҳолати</b>\n\n%(db)s Маълумотлар базаси  —  <b>%(db_ms).0f ms</b>\n%(redis)s Redis  —  <b>%(redis_ms).0f ms</b>\n%(tg)s Telegram API  —  <b>%(tg_ms).0f ms</b>\n%(sched)s Режалаштирувчи  —  <b>%(jobs)s</b> та вазифа\n%(ffmpeg)s ffmpeg\n\n⬇️ Фаол юклашлар  —  <b>%(downloads)s</b> / %(limit)s  (⏳ %(queued)s)\n🧠 Бот хотираси  —  <b>%(memory).0f MB</b>\n💾 Бўш диск  —  <b>%(disk_free).1f GB</b> / %(disk_total).0f GB\n⏱ Ишлаш вақти  —  <b>%(uptime)s</b>\n📦 yt-dlp  —  <b>%(ytdlp)s</b>\n\n<i>%(time)s</i>"
+
+msgid "🔄 Refresh"
+msgstr "🔄 Янгилаш"
+
+msgid "🩺 System"
+msgstr "Тизим"
+
+msgid "Updated"
+msgstr "Янгиланди"
+
+msgid "📜 Logs"
+msgstr "Логлар"
+
+msgid "📜 Last %(lines)s log lines of %(service)s"
+msgstr "📜 %(service)s: охирги %(lines)s қатор лог"
+
+msgid "✖️ Close panel"
+msgstr "✖️ Панелни ёпиш"
+
+msgid "Admin panel closed. Send /manage to open it again."
+msgstr "Админ панел ёпилди. Қайта очиш учун /manage юборинг."
+
+msgid "❌ Cancelled. Main menu:"
+msgstr "❌ Бекор қилинди. Асосий меню:"
+
+msgid "🧪 Send a test to me"
+msgstr "🧪 Менга синов юбориш"
+
+msgid "📅 Pick date and time"
+msgstr "📅 Сана ва вақтни танлаш"
+
+msgid "➕ Add admin"
+msgstr "➕ Админ қўшиш"
+
+msgid "🛡 Make moderator"
+msgstr "🛡 Модератор қилиш"
+
+msgid "👮 Make admin"
+msgstr "👮 Админ қилиш"
+
+msgid "🗑 Remove from team"
+msgstr "🗑 Жамоадан чиқариш"
+
+msgid "👮 Admin"
+msgstr "👮 Админ"
+
+msgid "🛡 Moderator"
+msgstr "🛡 Модератор"
+
+msgid "Broadcast"
+msgstr "Хабар юбориш"
+
+msgid "<b>👥 Team</b>  —  <b>%(total)s</b>\n\n👮 <b>Admin</b> — users, statistics, broadcasts, mandatory subscriptions.\n🛡 <b>Moderator</b> — users, statistics and system status only.\n\nSelect a person to change their role or remove them,\nor tap <b>➕ Add admin</b> to add someone."
+msgstr "<b>👥 Жамоа</b>  —  <b>%(total)s</b>\n\n👮 <b>Админ</b> — фойдаланувчилар, статистика, хабар юбориш, мажбурий обуналар.\n🛡 <b>Модератор</b> — фақат фойдаланувчилар, статистика ва тизим ҳолати.\n\nРолини ўзгартириш ёки олиб ташлаш учун одамни танланг,\nёки кимнидир қўшиш учун <b>➕ Админ қўшиш</b> тугмасини босинг."
+
+msgid "<b>%(name)s</b>\n\nRole         —  <b>%(role)s</b>\nTelegram ID  —  <b>%(telegram_id)s</b>\nLanguage     —  <b>%(language)s</b>\nPremium      —  <b>%(premium)s</b>\nBlocked      —  <b>%(blocked)s</b>\nChat type    —  <b>%(chat_type)s</b>\nJoined       —  <b>%(joined)s</b>\n\nRefreshed at: <i>%(refreshed_at)s</i>"
+msgstr "<b>%(name)s</b>\n\nРол          —  <b>%(role)s</b>\nTelegram ID  —  <b>%(telegram_id)s</b>\nТил          —  <b>%(language)s</b>\nPremium      —  <b>%(premium)s</b>\nБлокланган   —  <b>%(blocked)s</b>\nChat тури    —  <b>%(chat_type)s</b>\nҚўшилган     —  <b>%(joined)s</b>\n\nҚайта янгиланган: <i>%(refreshed_at)s</i>"
+
+msgid "<b>Users</b>  —  <b>%(total)s</b>\n\nBlocked  —  <b>%(blocked)s</b>\n\nSend a <b>Telegram ID</b> or a <b>name</b> to find a user."
+msgstr "<b>Фойдаланувчилар</b>  —  <b>%(total)s</b>\n\nБлокланган  —  <b>%(blocked)s</b>\n\nФойдаланувчини топиш учун <b>Telegram ID</b> ёки <b>исм</b> юборинг."
+
+msgid "<b>%(name)s</b>\n\nTelegram ID  —  <b>%(telegram_id)s</b>\nLanguage     —  <b>%(language)s</b>\nPremium      —  <b>%(premium)s</b>\nBlocked      —  <b>%(blocked)s</b>%(banned_until_line)s\nChat type    —  <b>%(chat_type)s</b>\nStatus       —  <b>%(status)s</b>\nJoined       —  <b>%(joined)s</b>\nLast active  —  <b>%(last_active)s</b>\n\nRefreshed at: <i>%(refreshed_at)s</i>"
+msgstr "<b>%(name)s</b>\n\nTelegram ID  —  <b>%(telegram_id)s</b>\nТил          —  <b>%(language)s</b>\nPremium      —  <b>%(premium)s</b>\nБлокланган   —  <b>%(blocked)s</b>%(banned_until_line)s\nChat тури    —  <b>%(chat_type)s</b>\nҲолат        —  <b>%(status)s</b>\nҚўшилган     —  <b>%(joined)s</b>\nОхирги фаоллик —  <b>%(last_active)s</b>\n\nҚайта янгиланган: <i>%(refreshed_at)s</i>"
+
+#: src/handlers/users/command/new.py
+msgid "No new songs available right now. Please try again later."
+msgstr "Ҳозирча янги қўшиқлар йўқ. Кейинроқ уриниб кўринг."
+
+#: src/handlers/users/callback/new_songs.py
+msgid "The list has been updated. Here is the latest one."
+msgstr "Рўйхат янгиланди. Мана энг сўнггиси."
+
+#: src/handlers/users/callback/new_songs.py
+msgid "No other versions found."
+msgstr "Бошқа версиялар топилмади."
+
+#: src/keyboard/inline/new_songs.py
+msgid "🎬 Video"
+msgstr "🎬 Видео"
+
+#: src/handlers/admin/command/manage.py
+msgid "⛔ Access denied."
+msgstr "⛔ Рухсат йўқ."
+
+#: src/services/charts
+msgid "Bot audience at a glance"
+msgstr "Бот аудиторияси бир қарашда"
+
+msgid "Total users"
+msgstr "Жами фойдаланувчилар"
+
+msgid "Active · 30 days"
+msgstr "Фаол · 30 кун"
+
+msgid "New today"
+msgstr "Бугун янги"
+
+msgid "Saved media"
+msgstr "Сақланган медиа"
+
+msgid "Languages"
+msgstr "Тиллар"
+
+msgid "Not chosen"
+msgstr "Танланмаган"
+
+msgid "Chat types"
+msgstr "Чат турлари"
+
+msgid "Private chats"
+msgstr "Шахсий чатлар"
+
+msgid "Groups"
+msgstr "Гуруҳлар"
+
+msgid "Supergroups"
+msgstr "Супергуруҳлар"
+
+msgid "Channels"
+msgstr "Каналлар"
+
+msgid "Media by platform"
+msgstr "Платформалар бўйича медиа"
+
+msgid "Updated: %(time)s (Tashkent time)"
+msgstr "Янгиланди: %(time)s (Тошкент вақти)"
+
+msgid "no change"
+msgstr "ўзгаришсиз"
+
+msgid "New users · last 30 days"
+msgstr "Янги фойдаланувчилар · охирги 30 кун"
+
+msgid "Days"
+msgstr "Кунлар"
+
+msgid "New users"
+msgstr "Янги фойдаланувчилар"
+
+msgid "Last 24 hours"
+msgstr "Охирги 24 соат"
+
+msgid "Last 7 days"
+msgstr "Охирги 7 кун"
+
+msgid "Last 30 days"
+msgstr "Охирги 30 кун"
+
+msgid "Compared with the previous period"
+msgstr "Олдинги давр билан солиштирганда"
+
+msgid "By language · 30 days"
+msgstr "Тиллар бўйича · 30 кун"
+
+#: src/utils/helpers/media_errors.py src/middlewares/download_limit.py
+msgid "❌ The file is too large (over %(limit)sMB). Please choose another video."
+msgstr "❌ Файл жуда катта (%(limit)sMB дан ошади). Илтимос, бошқа видео танланг."
+
+msgid "⏳ You are in the queue. Please wait..."
+msgstr "⏳ Навбатдасиз. Илтимос, кутинг..."
+
+
+#: src/keyboard/inline/youtube_link.py src/handlers/users/callback/youtube_link.py
+msgid "🎵 Audio"
+msgstr "🎵 Аудио"
+
+msgid "❌ The file is too large (over %(limit)sMB). Please choose a lower quality."
+msgstr "❌ Файл жуда катта (%(limit)sMB дан ошади). Илтимос, пастроқ сифатни танланг."
+
+#, python-format
+msgid "⏳ Downloading... %(percent)s%%"
+msgstr "⏳ Юкланмоқда... %(percent)s%%"
+
+msgid "📤 Sending the video..."
+msgstr "📤 Видео юборилмоқда..."
