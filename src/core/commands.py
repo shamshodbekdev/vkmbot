@@ -6,7 +6,7 @@ from aiogram.exceptions import TelegramAPIError
 from aiogram.types import BotCommand, BotCommandScopeChat, BotCommandScopeDefault
 
 from core.config import config
-from database.enums import UserRole
+from database.enums import STAFF_ROLES, UserRole
 from database.models import User
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,9 @@ class Commands:
     @staticmethod
     def _user_commands() -> List[BotCommand]:
         return [
+            BotCommand(command="start", description="Start the bot"),
             BotCommand(command="my", description="List your playlist"),
+            BotCommand(command="new", description="NEW popular songs"),
             BotCommand(command="top", description="TOP popular tracks"),
             BotCommand(command="mood", description="Get a playlist based on your mood"),
             BotCommand(command="lang", description="Change language"),
@@ -53,7 +55,7 @@ class Commands:
             scope=BotCommandScopeDefault(),
         )
         admin_ids = set(
-            await User.filter(role=UserRole.ADMINISTRATOR).values_list("telegram_id", flat=True)
+            await User.filter(role__in=STAFF_ROLES).values_list("telegram_id", flat=True)
         )
         admin_ids.add(config.telegram_id)
         for chat_id in admin_ids:

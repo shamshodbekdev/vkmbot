@@ -9,30 +9,31 @@ from keyboard.reply import ManageKeyboard, BackKeyboard
 from keyboard.inline import ManageAdminKeyboard
 from utils.formatters import build_admins_list
 from states.admin import ManageAdminState
-from filters.common import IsAdmin
-from database.enums import UserRole
+from filters.common import IsSuperAdmin
+from database.enums import STAFF_ROLES, UserRole
+from core.config import config
 from database.models import User
 from humanize import intcomma
 
 router = Router()
 
-@router.message(F.text == __("Admins"), IsAdmin())
+@router.message(F.text == __("Admins"), IsSuperAdmin())
 async def manage_admins_handler(message: Message, state: FSMContext) -> None:
-    total = await User.filter(role=UserRole.ADMINISTRATOR).count()
+    total = await User.filter(role__in=STAFF_ROLES).count()
     await message.answer(
         text=build_admins_list(intcomma(total)),
         reply_markup=await ManageAdminKeyboard.list()
     )
     await state.clear()
 
-@router.message(F.text == "⬅️", StateFilter(ManageAdminState.WAITING_FOR_CHAT_ID), IsAdmin())
+@router.message(F.text == "⬅️", StateFilter(ManageAdminState.WAITING_FOR_CHAT_ID), IsSuperAdmin())
 async def manage_admins_add_back_handler(message: Message, state: FSMContext) -> None:
-    total = await User.filter(role=UserRole.ADMINISTRATOR).count()
+    total = await User.filter(role__in=STAFF_ROLES).count()
     await message.answer(text=_("Main menu"), reply_markup=ManageKeyboard.make())
     await message.answer(text=build_admins_list(intcomma(total)), reply_markup=await ManageAdminKeyboard.list())
     await state.clear()
 
-@router.message(StateFilter(ManageAdminState.WAITING_FOR_CHAT_ID), IsAdmin())
+@router.message(StateFilter(ManageAdminState.WAITING_FOR_CHAT_ID), IsSuperAdmin())
 async def manage_admins_chat_id_handler(message: Message, state: FSMContext) -> None:
     chat_id = message.text.strip() if message.text else ""
     if not chat_id.isdigit():
@@ -50,7 +51,7 @@ async def manage_admins_chat_id_handler(message: Message, state: FSMContext) -> 
         )
         return
 
-    if user.role == UserRole.ADMINISTRATOR:
+    if user.role in STAFF_ROLES or user.telegram_id == config.telegram_id:
         await message.answer(
             text=_("User is already an admin."),
             reply_markup=BackKeyboard.make()
@@ -59,7 +60,7 @@ async def manage_admins_chat_id_handler(message: Message, state: FSMContext) -> 
 
     await message.answer(text=_("Main menu"), reply_markup=ManageKeyboard.make())
     await message.answer(
-        text=_("Are you sure you want to make <b>%(name)s</b> an admin?") % dict(name=escape(user.display_name)),
+        text=_("Which role should <b>%(name)s</b> get?") % dict(name=escape(user.display_name)),
         reply_markup=ManageAdminKeyboard.confirm_add(int(chat_id)),
     )
     await state.clear()

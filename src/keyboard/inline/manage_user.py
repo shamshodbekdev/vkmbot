@@ -8,6 +8,17 @@ from utils.constants.manage_user import TEMP_BAN_DURATIONS
 
 class ManageUserKeyboard:
     @staticmethod
+    def search_results(users) -> InlineKeyboardMarkup:
+        builder = InlineKeyboardBuilder()
+        for u in users:
+            icon = "🚫" if u.is_blocked else ("👥" if u.chat_type.value != "private" else "👤")
+            builder.row(InlineKeyboardButton(
+                text="%s %s · %s" % (icon, u.display_name[:40], u.telegram_id),
+                callback_data=UserManageCallback(action="reload", user_id=u.telegram_id).pack(),
+            ))
+        return builder.as_markup()
+
+    @staticmethod
     def detail(user_id: int, is_blocked: bool, is_temp_banned: bool = False) -> InlineKeyboardMarkup:
         builder = InlineKeyboardBuilder()
         builder.row(

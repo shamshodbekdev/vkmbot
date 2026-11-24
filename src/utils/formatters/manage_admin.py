@@ -1,6 +1,7 @@
 from html import escape
 import datetime
 from aiogram.utils.i18n import gettext as _
+from database.enums import UserRole
 from database.models import User
 
 UTC = datetime.timezone.utc
@@ -8,13 +9,13 @@ UTC = datetime.timezone.utc
 
 def build_admins_list(total: int) -> str:
     return _(
-        "<b>Admins</b>  —  <b>%(total)s</b>\n"
+        "<b>👥 Team</b>  —  <b>%(total)s</b>\n"
         "\n"
-        "Admins have full access to the management panel.\n"
-        "They can manage users, subscriptions, and broadcasts.\n"
+        "👮 <b>Admin</b> — users, statistics, broadcasts, mandatory subscriptions.\n"
+        "🛡 <b>Moderator</b> — users, statistics and system status only.\n"
         "\n"
-        "Select an admin from the list below to view details\n"
-        "or tap <b>Add admin</b> to grant access to a new user."
+        "Select a person to change their role or remove them,\n"
+        "or tap <b>➕ Add admin</b> to add someone."
     ) % dict(total=total)
 
 
@@ -23,6 +24,7 @@ def build_admin_detail(user: User) -> str:
     return _(
         "<b>%(name)s</b>\n"
         "\n"
+        "Role         —  <b>%(role)s</b>\n"
         "Telegram ID  —  <b>%(telegram_id)s</b>\n"
         "Language     —  <b>%(language)s</b>\n"
         "Premium      —  <b>%(premium)s</b>\n"
@@ -33,6 +35,7 @@ def build_admin_detail(user: User) -> str:
         "Refreshed at: <i>%(refreshed_at)s</i>"
     ) % dict(
         name=escape(user.display_name),
+        role=_("👮 Admin") if user.role == UserRole.ADMINISTRATOR else _("🛡 Moderator"),
         telegram_id=user.telegram_id,
         language=user.language_code.upper(),
         premium=_("Yes") if user.is_premium else _("No"),

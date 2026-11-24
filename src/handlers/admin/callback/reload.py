@@ -1,28 +1,20 @@
-import asyncio
+from aiogram import F, Router
+from aiogram.types import BufferedInputFile, CallbackQuery
 
-from aiogram import Router, F
-from aiogram.types import CallbackQuery, BufferedInputFile
-from filters.common import IsAdmin
 from filters.callback.reload import ReloadCallback
+from filters.common import IsModerator
 from keyboard.inline.reload import ReloadKeyboard
-from services.repositories.statistics import StatisticsService
-from services.repositories.analytics import AnalyticsService
-from services.charts.statistics import StatisticsChartService
-from services.charts.analytics import AnalyticsChartService
-from services.health import HealthCheckService
-from utils.formatters import build_statistics_caption, build_analytics_caption
+from services.admin_panel_cache import analytics_panel, statistics_panel
 from utils.helpers.telegram import safe_delete
 
 router = Router()
 
 
-@router.callback_query(ReloadCallback.filter(F.action == "statistics"), IsAdmin())
+@router.callback_query(ReloadCallback.filter(F.action == "statistics"), IsModerator())
 async def reload_statistics_callback(callback: CallbackQuery) -> None:
-    report = await StatisticsService.get_report()
-    caption = build_statistics_caption(report)
-    image = await asyncio.to_thread(StatisticsChartService.generate, report)
+    caption, image = await statistics_panel(force=True)
     await callback.message.answer_photo(
-        photo=BufferedInputFile(image.read(), filename="statistics.png"),
+        photo=BufferedInputFile(image, filename="statistics.png"),
         caption=caption,
         reply_markup=ReloadKeyboard.statistics(),
     )
@@ -30,14 +22,11 @@ async def reload_statistics_callback(callback: CallbackQuery) -> None:
     await callback.answer()
 
 
-@router.callback_query(ReloadCallback.filter(F.action == "analytics"), IsAdmin())
+@router.callback_query(ReloadCallback.filter(F.action == "analytics"), IsModerator())
 async def reload_analytics_callback(callback: CallbackQuery) -> None:
-    report = await AnalyticsService.get_report()
-    health = await HealthCheckService.check_health()
-    caption = build_analytics_caption(report, health)
-    image = await asyncio.to_thread(AnalyticsChartService.generate, report)
+    caption, image = await analytics_panel(force=True)
     await callback.message.answer_photo(
-        photo=BufferedInputFile(image.read(), filename="analytics.png"),
+        photo=BufferedInputFile(image, filename="analytics.png"),
         caption=caption,
         reply_markup=ReloadKeyboard.analytics(),
     )

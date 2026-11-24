@@ -13,7 +13,7 @@ def build_users_list(total: int, blocked: int) -> str:
         "\n"
         "Blocked  —  <b>%(blocked)s</b>\n"
         "\n"
-        "Send the Telegram ID of the user you want to manage."
+        "Send a <b>Telegram ID</b> or a <b>name</b> to find a user."
     ) % dict(total=total, blocked=blocked)
 
 
@@ -38,6 +38,7 @@ def build_user_detail(user: User) -> str:
         "Chat type    —  <b>%(chat_type)s</b>\n"
         "Status       —  <b>%(status)s</b>\n"
         "Joined       —  <b>%(joined)s</b>\n"
+        "Last active  —  <b>%(last_active)s</b>\n"
         "\n"
         "Refreshed at: <i>%(refreshed_at)s</i>"
     ) % dict(
@@ -50,5 +51,6 @@ def build_user_detail(user: User) -> str:
         chat_type=user.chat_type.value.capitalize(),
         status=user.chat_status.value.capitalize(),
         joined=user.created_at.strftime("%d.%m.%Y"),
+        last_active=user.updated_at.strftime("%d.%m.%Y %H:%M UTC") if user.updated_at else "—",
         refreshed_at=now.strftime("%d.%m.%Y %H:%M:%S"),
     )
